@@ -314,7 +314,7 @@ else:
             st.session_state.kado_pilih = "emas"
 
 # AMAN: Menggunakan .get() agar tidak error KeyError meskipun state kosong
-    pilihan_kado = st.session_state.get("kado_pilih")
+    pilihan_kado = st.session_state.get("kado_pilih", None)
     
     if pilihan_kado == "merah":
         st.error("🎁 **Isi Kado Merah:** Tiket gratis ditraktir seblak level neraka (syarat & ketentuan: dibayarin pakai doa doang wkwk).")
