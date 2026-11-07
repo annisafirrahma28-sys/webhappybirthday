@@ -69,6 +69,37 @@ st.markdown("""
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
         box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
     }
+
+    /* TOMBOL IYA (OTOMATIS MEMBESAR BERDASARKAN JUMLAH KLIK NGGAK) */
+    div[data-testid="stColumn"]:nth-of-type(1) .stButton>button {{
+        background-color: #ff3366 !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 50px !important;
+        font-weight: bold !important;
+        font-size: {font_size_iya}px !important;
+        padding: {padding_iya}px 25px !important;
+        transition: all 0.3s ease !important;
+        animation: pulse infinite 2s;
+        box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4) !important;
+    }}
+    
+    div[data-testid="stColumn"]:nth-of-type(1) .stButton>button:hover {{
+        transform: scale(1.05) !important;
+    }}
+    
+    /* Tombol Nggak (Tetap standar) */
+    div[data-testid="stColumn"]:nth-of-type(2) .stButton>button {{
+        background-color: #ffffff !important;
+        color: #777777 !important;
+        border: 1px solid #cccccc !important;
+        border-radius: 50px !important;
+        font-weight: bold !important;
+        font-size: 18px !important;
+        padding: 10px 25px !important;
+    }}
+    </style>
+    """, unsafe_allow_html=True)
     
     /* Efek tombol bercahaya khusus untuk pilihan positif */
     div[data-testid="stColumn"]:nth-of-type(1) .stButton>button {
@@ -146,26 +177,27 @@ if not st.session_state.selesai:
             st.session_state.hitung += 1
             st.rerun() 
 
-    # REAKSI MENGELAK BERKALI-KALI
+    # REAKSI MENGELAK DENGAN EFEK LOOPING BERPUTAR TERUS
     if st.session_state.hitung > 0:
         h = st.session_state.hitung
         st.markdown('<div class="animate__animated animate__shakeX">', unsafe_allow_html=True)
         
-        if h == 1:
-            st.warning("Masa sih salah? lu jgn meragukan gw!")
-        elif h == 2:
-            st.error("SYIT! JGN MERAGUKAN INGATAN GW! INGAT KOK GW 7 DESEMBER")
-        elif h == 3:
-            st.error("WOY MONYET!")
-        elif h == 4:
-            st.info("PENCET TOMBOL SEBELAH GAK!??")
-        elif h == 5:
-            st.info("KURANG AJARRRRR")
-        elif h == 6:
-            st.info("GW REBUT YE FURUYA REI LU!")
-        elif h == 7:
-            st.info("Gak mau tahu, pokoknya web ini bakal ngambek dan nge-loop terus sampai kamu ngaku! 😤!")
-    else:
+        # Menggunakan modulus (%) agar omelannya terus berputar (looping) tidak ada habisnya
+        pesan_loop = h % 6
+        
+        if pesan_loop == 1:
+            st.warning(f"Klik ke-{h}: Masa sih salah? lu jgn meragukan gw! 🧐")
+        elif pesan_loop == 2:
+            st.error(f"Klik ke-{h}: SYIT! JGN MERAGUKAN INGATAN GW! INGAT KOK GW 7 DESEMBER 😤")
+        elif pesan_loop == 3:
+            st.error(f"Klik ke-{h}: WOY MONYET! Ngaku aja napa! 🐒")
+        elif pesan_loop == 4:
+            st.info(f"Klik ke-{h}: Capek kan mencet tombol 'Nggak'? Tombol 'Iya'-nya makin raksasa tuh! 💻😭")
+        elif pesan_loop == 5:
+            st.info(f"Klik ke-{h}: PENCET TOMBOL SEBELAH GAK!? Gak bakal bisa kabur lu! 🫵🔥")
+        else:
+            st.warning(f"Klik ke-{h}: Total ngeyel terus! Web ini bakal nge-loop terus sampe subuh kalau gak ngaku! 🤣💀")
+            
         st.markdown('</div>', unsafe_allow_html=True)
 
 # 5. LOGIKA HALAMAN KEJUTAN (SETELAH KLIK IYA)
