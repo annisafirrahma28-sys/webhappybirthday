@@ -143,7 +143,7 @@ if 'hitung' not in st.session_state:
     st.session_state.hitung = 0
 if 'selesai' not in st.session_state:
     st.session_state.selesai = False
-if 'buka_kado' not in st.session_state:
+if 'kado_pilih' not in st.session_state:
     st.session_state.buka_kado = None
 if 'posisi_acak' not in st.session_state:
     st.session_state.posisi_acak = False
