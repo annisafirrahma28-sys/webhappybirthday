@@ -115,15 +115,25 @@ if not st.session_state.selesai:
     st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnU1dTRneTI5ZHRkZXFlbGV5czZxY25sZ2p4MmNobnF4aGR0eDFmNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/QsomqbDcRm9xMFxJMu/giphy.gif", use_container_width=True)
     st.markdown('<p class="mega-text">Denger-denger hari ini ada yang jatah umurnya berkurang nih... <br><b>Kamu yang ulang tahun hari ini kan? 👀</b></p>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
+
+# --- BAGIAN TOMBOL DINAMIS (YANG BIKIN KOLOM IYA MEMBESAR & NGGAK MENYUSUT) ---
+    lebar_kolom_iya = min(1 + (st.session_state.hitung * 0.4), 3.0)
+    lebar_kolom_nggak = max(1 - (st.session_state.hitung * 0.15), 0.3)
     
-    col1, col2 = st.columns(2)
+col1, col2 = st.columns([lebar_kolom_iya, lebar_kolom_nggak])
     
     with col1:
         # Teks tombol "Iya" makin memaksa
         teks_iya = "Iya"
         if st.session_state.hitung >= 3:
             teks_iya = "IYA"
-        elif st.session_state.hitung >= 5:
+        if st.session_state.hitung >= 4:
+            teks_iya = "IYA"
+        if st.session_state.hitung >= 5:
+            teks_iya = "IYA"
+        if st.session_state.hitung >= 6:
+            teks_iya = "IYA"
+        elif st.session_state.hitung >= 7:
             teks_iya = "IYA"
             
         if st.button(teks_iya, use_container_width=True):
@@ -133,7 +143,7 @@ if not st.session_state.selesai:
     with col2:
         if st.button("Nggak", use_container_width=True):
             st.session_state.hitung += 1
-            st.rerun() # Refresh halaman biar ukuran tombolnya langsung membesar
+            st.rerun() 
 
     # REAKSI MENGELAK DENGAN EFEK GETAR/GUNCANGAN     
     if st.session_state.hitung > 0:
