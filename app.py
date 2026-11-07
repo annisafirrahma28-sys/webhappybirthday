@@ -145,47 +145,71 @@ if not st.session_state.selesai:
 
     col1, col2 = st.columns(2)
     
-    with col1:
+     with col1:
         # Teks tombol "Iya" makin lama makin memaksa
         teks_iya = "Iya"
         if st.session_state.hitung >= 2:
-            teks_iya = "Iya, Ngaku deh! 😭"
+            teks_iya = "Iya"
+        if st.session_state.hitung >= 3:
+            teks_iya = "IYA"
         if st.session_state.hitung >= 4:
-            teks_iya = "IYA KOK, UDAH PENCET AJA! 🫵"
+            teks_iya = "IYAA"
+        if st.session_state.hitung >= 5:
+            teks_iya = "IYAAAA"
         if st.session_state.hitung >= 6:
+            teks_iya = "IYAAAAAAA"
+        if st.session_state.hitung >= 7:
             teks_iya = "PENCET INI ATAU GUE NGAMBEK! 🔥"
             
         if st.button(teks_iya, use_container_width=True):
             st.session_state.selesai = True
             st.rerun()
+
             
     with col2:
         if st.button("Nggak", use_container_width=True):
             st.session_state.hitung += 1
             st.rerun() 
 
-    # REAKSI MENGELAK BERKALI-KALI
+   # --- ALTERNATIF: METERAN EMOSI / KEMARAHAN WEB KUSTOM ---
+    st.markdown(f"""
+    <div class="emotion-box">
+        <div style="font-weight: bold; color: #ff3366; font-family: 'Poppins', sans-serif;">
+            🔥 Level Kekesalan Web: {level_emosi}%
+        </div>
+        <div class="emotion-bar-container">
+            <div class="emotion-bar-fill"></div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # REAKSI MENGELAK DENGAN EFEK LOOPING BERPUTAR TERUS
     if st.session_state.hitung > 0:
         h = st.session_state.hitung
         st.markdown('<div class="animate__animated animate__shakeX">', unsafe_allow_html=True)
         
-        if h == 1:
-            st.warning("Masa sih salah? lu jgn meragukan gw!")
-        elif h == 2:
-            st.error("SYIT! JGN MERAGUKAN INGATAN GW! INGAT KOK GW 7 DESEMBER")
-        elif h == 3:
-            st.error("WOY MONYET!")
-        elif h == 4:
-            st.info("Capek kan mencet tombol 'Nggak'? Lihat tuh tombol 'Iya' makin gede! 💻😭")
-        elif h == 5:
-            st.info("PENCET TOMBOL SEBELAH GAK!? Tombolnya udah raksasa tuh!")
-        elif h == 6:
-            st.info("KURANG AJARRRR!!!!")
-        elif h == 7:
-            st.info("GW REBUT YE FURUYA REI LU!")
+        # Menggunakan modulus (%) agar omelannya terus berputar (looping) tidak ada habisnya
+        pesan_loop = h % 6
+        
+        if pesan_loop == 1:
+            st.warning(f"Klik ke-{h}: Masa sih salah? lu jgn meragukan gw!")
+        elif pesan_loop == 2:
+            st.error(f"Klik ke-{h}: SYIT! JGN MERAGUKAN INGATAN GW! INGAT KOK GW 7 DESEMBER 😤")
+        elif pesan_loop == 3:
+            st.error(f"Klik ke-{h}: WOY MONYET!")
+        elif pesan_loop == 4:
+            st.info(f"Klik ke-{h}: Capek kan mencet tombol 'Nggak'?")
+        elif pesan_loop == 5:
+            st.info(f"Klik ke-{h}: PENCET TOMBOL SEBELAH GAK!?")
+        elif pesan_loop == 6:
+            st.info(f"Klik ke-{h}: GW AMBIL YE FURUYA REI LUHK!")
+        elif pesan_loop == 7:
+            st.info(f"Klik ke-{h}: GW BENCI LU!")
         else:
-            st.warning("Gak mau tahu, tombolnya makin membesar nutupin layar tuh, cepet ngaku! 😤")
+            st.warning(f"Klik ke-{h}: LU ngeyel terus!")
+            
         st.markdown('</div>', unsafe_allow_html=True)
+
 
 # 5. LOGIKA HALAMAN KEJUTAN (SETELAH KLIK IYA)
 else:
