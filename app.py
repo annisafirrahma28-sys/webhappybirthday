@@ -168,7 +168,7 @@ if not st.session_state.selesai:
     with col_g1:
         st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnU1dTRneTI5ZHRkZXFlbGV5czZxY25sZ2p4MmNobnF4aGR0eDFmNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/QsomqbDcRm9xMFxJMu/giphy.gif", use_container_width=True)
     with col_g2:
-        st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExajJoNHo0OHY2bTR3azFrcWp5N3lhbjRkMGhucTNkYndmNW96eG5yayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3oz8xAFtphMRurshu0/giphy.gif", use_container_width=True
+        st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExajJoNHo0OHY2bTR3azFrcWp5N3lhbjRkMGhucTNkYndmNW96eG5yayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3oz8xAFtphMRurshu0/giphy.gif", use_container_width=True)
                  
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
     st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnU1dTRneTI5ZHRkZXFlbGV5czZxY25sZ2p4MmNobnF4aGR0eDFmNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/QsomqbDcRm9xMFxJMu/giphy.gif", use_container_width=True)
