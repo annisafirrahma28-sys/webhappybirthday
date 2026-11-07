@@ -313,13 +313,12 @@ else:
         if st.button("Kado Emas 👑", use_container_width=True):
             st.session_state.kado_pilih = "emas"
             
-    # Reaksi isi kado
-    if st.session_state.kado_pilih == "merah":
-         st.info("🎁 **Isi Kado Merah:** Lu nraktir gw.")
+   if st.session_state.kado_pilih == "merah":
+        st.error("🎁 **Isi Kado Merah:** Lu nraktir gw")
     elif st.session_state.kado_pilih == "biru":
-        st.info("🎀 **Isi Kado Biru:** Gw ditraktir lu")
+        st.info("🎀 **Isi Kado Biru:** Gw ditraktir lu!")
     elif st.session_state.kado_pilih == "emas":
-        st.info("👑 **Isi Kado Emas:** Lu sedekah ke gw")
+        st.success("👑 **Isi Kado Emas:** Prabowo lengser")
 
     st.markdown('</div>', unsafe_allow_html=True)
     
