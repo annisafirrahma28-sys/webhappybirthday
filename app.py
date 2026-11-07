@@ -97,39 +97,15 @@ st.markdown("""
         font-weight: bold !important;
         font-size: 18px !important;
         padding: 10px 25px !important;
-    }}
-    </style>
-    """, unsafe_allow_html=True)
-    
-    /* Efek tombol bercahaya khusus untuk pilihan positif */
-    div[data-testid="stColumn"]:nth-of-type(1) .stButton>button {
-        background-color: #ff3366 !important;
-        color: white !important;
-        border: none !important;
+        transition: all 0.3s ease !important;
         animation: pulse infinite 2s;
-    }
+        box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4) !important;
+    }}
     
-    div[data-testid="stColumn"]:nth-of-type(1) .stButton>button:hover {
+    div[data-testid="stColumn"]:nth-of-type(2) .stButton>button:hover {{
         transform: scale(1.05) !important;
-        box-shadow: 0 8px 25px rgba(255, 51, 102, 0.4) !important;
-    }
+    }}
     
-    /* Efek tombol bercahaya khusus untuk pilihan negatif */
-    div[data-testid="stColumn"]:nth-of-type(2) .stButton>button {
-        background-color: #ffffff !important;
-        color: #777777 !important;
-        border: 1px solid #cccccc !important;
-        animation : pulse infinite 2s;
-    }
-
-     div[data-testid="stColumn"]:nth-of-type(2) .stButton>button:hover {
-        transform: scale(1.05) !important;
-        box-shadow: 0 8px 25px rgba(255, 51, 102, 0.4) !important;
-    }
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
 # 3. INITIALIZE STATE (Memori Klik)
 if 'hitung' not in st.session_state:
     st.session_state.hitung = 0
