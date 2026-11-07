@@ -331,6 +331,9 @@ else:
         st.session_state.kado_pilih = None
         st.session_state.posisi_acak = False
         st.rerun()
+
+    if "kado_pilih" not in st.session_state:
+    st.session_state.kado_pilih = None
     if st.session_state.get(kado_pilih) == "merah":
         st.error("🎁 **Isi Kado Merah:** Lu nraktir gw")
     elif st.session_state.kado_pilih == "biru":
