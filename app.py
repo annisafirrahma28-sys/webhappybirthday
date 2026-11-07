@@ -7,6 +7,13 @@ st.set_page_config(
     layout="centered"
 )
 
+# Ambil jumlah klik "Nggak" saat ini untuk mengatur ukuran tombol secara dinamis
+hitung_klik = st.session_state.get('hitung', 0)
+
+# Hitung ukuran font tombol "Iya" agar makin besar tiap kali diklik "Nggak" (mulai dari 18px, maks 32px)
+font_size_iya = min(18 + (hitung_klik * 2), 32)
+padding_iya = min(10 + (hitung_klik * 3), 25)
+
 # 2. MENYUNTIKKAN ANIMATE.CSS DAN EMAS/PINK GLASSMORPHISM STYLE
 st.markdown("""
     <!-- Load Animate.css untuk efek teks bergerak -->
@@ -125,15 +132,13 @@ if not st.session_state.selesai:
     with col2:
         if st.button("Nggak", use_container_width=True):
             st.session_state.hitung += 1
+            st.rerun() # Refresh halaman biar ukuran tombolnya langsung membesar
 
-    # REAKSI MENGELAK DENGAN EFEK GETAR/GUNCANGAN
+    # REAKSI MENGELAK DENGAN EFEK GETAR/GUNCANGAN     
     if st.session_state.hitung > 0:
         h = st.session_state.hitung
         st.markdown('<div class="animate__animated animate__shakeX">', unsafe_allow_html=True)
-            
-    if st.session_state.hitung > 0:
-        h = st.session_state.hitung
-        st.markdown('<div class="animate__animated animate__shakeX">', unsafe_allow_html=True)
+        
         if h == 1:
             st.warning("Masa sih salah? lu jgn meragukan gw!")
         elif h == 2:
@@ -169,7 +174,7 @@ else:
     nanti kamu tersadar kalau kamu ini WNI wkekekekek. Wish you all the best yahh kekasih Furuya Rei!! 
     OMG im lucky to meet you dah asli. Mungkin you lah alasan gw lahir ke bumi. pas dikasih 77 pertanyaan terselip pertanyaan 
     ''Apakah kamu mau lahir ke bumi? disana ada Tiara'' gw be like ''Lho ya boleh wong ditawari'' :vvVVvV SORRYY FREAK BGT YYHHHH wkekekek maaf ✨<br><br>
-    <span style="font-size: 22px; color: #ff3366;"><b>🎁 Pertanyaan Terakhir: Kapan nih kita makan-makan traktiran? Ditunggu undangannya ya! 🍕🍰</b></span>
+    <span style="font-size: 22px; color: #ff3366;"><b>🎁 Pertanyaan Terakhir: Kapan nih kita bertemu lagih? Ditunggu undangannya ya! 🍕🍰</b></span>
     </p>
     """, unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
