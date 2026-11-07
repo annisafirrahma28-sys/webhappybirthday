@@ -148,6 +148,10 @@ if not st.session_state.selesai:
     st.markdown('<p class="mega-text">Denger-denger hari ini ada yang jatah umurnya berkurang nih... <br><b>Kamu yang ulang tahun hari ini kan? 👀</b></p>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
+    # Mengatur lebar kolom: Tombol "Iya" makin lebar, tombol "Nggak" makin ciut dan sempit!
+    lebar_iya = min(1 + (hitung_klik * 0.5), 3.5)
+    lebar_nggak = max(1 - (hitung_klik * 0.12), 0.2)
+
     col1, col2 = st.columns(2)
     
     with col1:
@@ -171,12 +175,14 @@ if not st.session_state.selesai:
             st.rerun()
 
     with col2:
-        # Teks tombol "Nggak" bakal ikut berubah jadi makin panik/kecil
+        # Teks tombol "Nggak" makin lama makin ciut / susah dipencet
         teks_nggak = "Nggak"
-        if st.session_state.hitung >= 3:
-            teks_nggak = "ih ogah"
-        if st.session_state.hitung >= 5:
+        if st.session_state.hitung >= 2:
+            teks_nggak = "ogah"
+        if st.session_state.hitung >= 4:
             teks_nggak = "ga"
+        if st.session_state.hitung >= 6:
+            teks_nggak = "."
             
         if st.button(teks_nggak, use_container_width=True):
             st.session_state.hitung += 1
