@@ -315,11 +315,11 @@ else:
             
     # Reaksi isi kado
     if st.session_state.kado_pilih == "merah":
-        st.error("🎁 **Isi Kado Merah:** Lu nraktir gw.")
+         st.info("🎁 **Isi Kado Merah:** Lu nraktir gw.")
     elif st.session_state.kado_pilih == "biru":
         st.info("🎀 **Isi Kado Biru:** Gw ditraktir lu")
     elif st.session_state.kado_pilih == "emas":
-        st.success("👑 **Isi Kado Emas:** Lu sedekah ke gw")
+        st.info("👑 **Isi Kado Emas:** Lu sedekah ke gw")
 
     st.markdown('</div>', unsafe_allow_html=True)
     
