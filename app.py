@@ -140,7 +140,7 @@ with col1:
             st.session_state.selesai = True
             st.rerun()
             
-    with col2:
+ with col2:
         if st.button("Nggak", use_container_width=True):
             st.session_state.hitung += 1
             st.rerun() 
