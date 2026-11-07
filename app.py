@@ -180,10 +180,6 @@ if not st.session_state.selesai:
             st.session_state.hitung += 1
             st.rerun()
             
-    with col2:
-        if st.button("Nggak", use_container_width=True):
-            st.session_state.hitung += 1
-            st.rerun() 
 # --- ALTERNATIF: METERAN EMOSI / KEMARAHAN WEB KUSTOM ---
     st.markdown(f"""
     <div class="emotion-box">
