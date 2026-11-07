@@ -133,6 +133,8 @@ if not st.session_state.selesai:
         if st.session_state.hitung >= 5:
             teks_iya = "IYAAAA"
         if st.session_state.hitung >= 6:
+            teks_iya = "IYAAAAAA!"
+        if st.session_state.hitung >= 6:
             teks_iya = "PENCET INI WOY!"
             
         if st.button(teks_iya, use_container_width=True):
@@ -165,7 +167,7 @@ if not st.session_state.selesai:
             st.info("GW REBUT YE FURUYA REI LU!")
     else:
         st.warning("Gak mau tahu, pokoknya web ini bakal ngambek dan nge-loop terus sampai kamu ngaku! 😤")
-        st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # 5. LOGIKA HALAMAN KEJUTAN (SETELAH KLIK IYA)
 else:
