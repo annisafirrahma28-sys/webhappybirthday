@@ -122,7 +122,7 @@ if not st.session_state.selesai:
     
 col1, col2 = st.columns([lebar_kolom_iya, lebar_kolom_nggak])
     
-    with col1:
+with col1:
         # Teks tombol "Iya" makin memaksa
         teks_iya = "Iya"
         if st.session_state.hitung >= 3:
