@@ -87,7 +87,7 @@ st.markdown("""
         animation : pulse infinite 2s;
     }
 
-     div[data-testid="stColumn"]:nth-of-type(1) .stButton>button:hover {
+     div[data-testid="stColumn"]:nth-of-type(2) .stButton>button:hover {
         transform: scale(1.05) !important;
         box-shadow: 0 8px 25px rgba(255, 51, 102, 0.4) !important;
     }
@@ -160,8 +160,12 @@ if not st.session_state.selesai:
         elif h == 7:
             st.info("GW REBUT YE FURUYA REI LU!")
         else:
-            st.warning("Gak mau tahu, pokoknya web ini bakal ngambek dan nge-loop terus sampai kamu ngaku! 😤")
-        st.markdown('</div>', unsafe_allow_html=True)
+        # Kalau dia keras kepala ngeklik "Nggak" sampe 7 kali lebih, tombol Nggak-nya DIHAPUS! 
+        # Sisa tombol "Iya" doang yang segede gaban memenuhi layar wkwk
+        st.warning("⚠️ Tombol 'Nggak' panik ketakutan dan ngilang karena lu ngeyel mulu! 💀")
+        if st.button("IYA KOK, UDAH PENCET INI AJA SUPAYA TENANG! 🫵🔥", use_container_width=True):
+            st.session_state.selesai = True
+            st.rerun()
 
 # 5. LOGIKA HALAMAN KEJUTAN (SETELAH KLIK IYA)
 else:
