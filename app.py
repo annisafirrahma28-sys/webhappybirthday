@@ -11,8 +11,8 @@ st.set_page_config(
 hitung_klik = st.session_state.get('hitung', 0)
 
 # Ukuran font dan padding tombol "Iya" yang bakal makin bengkak/membesar tiap diklik "Nggak"
-font_size_iya = min(18 + (hitung_klik * 4), 36)
-padding_iya = min(10 + (hitung_klik * 5), 30)
+font_size_iya = min(18 + (hitung_klik * 4), 40)
+padding_iya = min(10 + (hitung_klik * 5), 33)
 
 # 2. MENYUNTIKKAN ANIMATE.CSS DAN CSS DINAMIS UNTUK TOMBOL MEMBESAR
 st.markdown(f"""
@@ -163,7 +163,7 @@ if not st.session_state.selesai:
         elif pesan_loop == 7:
             st.info(f"Klik ke-{h}: GW BENCI LU!")
         else:
-            st.warning(f"Klik ke-{h}: Total ngeyel terus! Web ini bakal nge-loop terus sampe subuh kalau gak ngaku! 🤣💀")
+            st.warning(f"Klik ke-{h}: Total ngeyel terus!")
             
         st.markdown('</div>', unsafe_allow_html=True)
 
