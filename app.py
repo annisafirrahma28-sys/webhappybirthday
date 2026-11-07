@@ -17,7 +17,7 @@ padding_iya = 10 + (hitung_klik * 8)
 # Hitung level emosi/kemarahan web dari 0% sampai 100% (nambah 10% tiap klik)
 level_emosi = min(hitung_klik * 10, 100)
 
-# 2. MENYUNTIKKAN CSS CUSTOM
+# 2. MENYUNTIKKAN ANIMATE.CSS DAN CSS DINAMIS UNTUK TOMBOL MEMBESAR
 st.markdown(f"""
     <!-- Load Animate.css untuk efek teks bergerak -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
