@@ -167,6 +167,7 @@ if not st.session_state.selesai:
 
             
     with col2:
+        # Teks tombol TETAP "Nggak" konsisten tidak berubah-ubah, tapi kotaknya menyusut ciut
         if st.button("Nggak", use_container_width=True):
             st.session_state.hitung += 1
             st.rerun() 
