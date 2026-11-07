@@ -15,7 +15,7 @@ st.markdown("""
     <style>
     /* Background gradasi mewah */
     .stApp {
-        background: linear-gradient(1b4965, #cae9ff 0%, #fecfef 99%, #fecfef 100%);
+        background: linear-gradient(#1b4965, #cae9ff 0%, #fecfef 99%, #fecfef 100%);
     }
     
     /* Wadah utama bergaya kaca transparan mewah (Glassmorphism) */
@@ -76,11 +76,23 @@ st.markdown("""
         box-shadow: 0 8px 25px rgba(255, 51, 102, 0.4) !important;
     }
     
-    /* Tombol tidak/mengelak dibuat standar abu-abu */
+    /* Efek Tombol tidak/mengelak dibuat standar abu-abu */
+    div[data-testid="stColumn"]:nth-of-type(1) .stButton>button {
+        background-color: #ffffff !important;
+        color: #777777 !important;
+        border: 1px solid #cccccc !important;
+        animation: pulse infinite 2s;   
+    }
+    
     div[data-testid="stColumn"]:nth-of-type(2) .stButton>button {
         background-color: #ffffff !important;
         color: #777777 !important;
         border: 1px solid #cccccc !important;
+    }
+
+    div[data-testid="stColumn"]:nth-of-type(1) .stButton>button:hover {
+        transform: scale(1.1) !important;
+        box-shadow: 0 8px 25px rgba(255, 51, 102, 0.4) !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -90,14 +102,6 @@ if 'hitung' not in st.session_state:
     st.session_state.hitung = 0
 if 'selesai' not in st.session_state:
     st.session_state.selesai = False
-
-# --- PEMUTAR MUSIK DI DEPAN (MENYESUAIKAN NAMA FILE DI GITHUB) ---
-try:
-    audio_file = open("glue song.mp3", "rb")
-    audio_bytes = audio_file.read()
-    st.audio(audio_bytes, format="audio/mp3", autoplay=True)
-except FileNotFoundError:
-    pass
 
 # 4. LOGIKA HALAMAN UTAMA
 if not st.session_state.selesai:
