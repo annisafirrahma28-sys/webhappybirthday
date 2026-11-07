@@ -10,6 +10,10 @@ st.set_page_config(
 # Ambil jumlah klik "Nggak" saat ini untuk mengatur ukuran tombol secara dinamis
 hitung_klik = st.session_state.get('hitung', 0)
 
+# Ukuran font dan padding tombol "Iya" yang bakal makin bengkak/membesar tiap diklik "Nggak"
+font_size_iya = min(18 + (hitung_klik * 4), 36)
+padding_iya = min(10 + (hitung_klik * 5), 30)
+
 # 2. MENYUNTIKKAN ANIMATE.CSS DAN EMAS/PINK GLASSMORPHISM STYLE
 st.markdown("""
     <!-- Load Animate.css untuk efek teks bergerak -->
@@ -18,7 +22,7 @@ st.markdown("""
     <style>
     /* Background gradasi mewah */
     .stApp {
-        background: linear-gradient(135deg, #1b4965 0%, #cae9ff 50%, #fecfef 100%);
+        background: linear-gradient(135deg, #a8ede3 0%, #fed6e3 100%);
     }
     
     /* Wadah utama bergaya kaca transparan mewah (Glassmorphism) */
@@ -160,12 +164,8 @@ if not st.session_state.selesai:
         elif h == 7:
             st.info("GW REBUT YE FURUYA REI LU!")
     else:
-        # Kalau dia keras kepala ngeklik "Nggak" sampe 7 kali lebih, tombol Nggak-nya DIHAPUS! 
-        # Sisa tombol "Iya" doang yang segede gaban memenuhi layar wkwk
-        st.warning("⚠️ Tombol 'Nggak' panik ketakutan dan ngilang karena lu ngeyel mulu! 💀")
-        if st.button("IYA KOK, UDAH PENCET INI AJA SUPAYA TENANG! 🫵🔥", use_container_width=True):
-            st.session_state.selesai = True
-            st.rerun()
+            st.warning("Gak mau tahu, pokoknya web ini bakal ngambek dan nge-loop terus sampai kamu ngaku! 😤")
+        st.markdown('</div>', unsafe_allow_html=True)
 
 # 5. LOGIKA HALAMAN KEJUTAN (SETELAH KLIK IYA)
 else:
