@@ -83,7 +83,7 @@ st.markdown("""
         box-shadow: 0 8px 25px rgba(255, 51, 102, 0.4) !important;
     }
     
-    /* Efek Tombol tidak/mengelak dibuat standar abu-abu */
+    /* Efek tombol tidak/mengelak dibuat untuk tombol pilihan negatif */
     div[data-testid="stColumn"]:nth-of-type(2) .stButton>button {
         background-color: #ffffff !important;
         color: #777777 !important;
