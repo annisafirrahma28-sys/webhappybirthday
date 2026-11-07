@@ -2,7 +2,7 @@ import streamlit as st
 
 # 1. SETTING HALAMAN PREMIUM
 st.set_page_config(
-    page_title="Happy Birthday BSF! 🎂🎉", 
+    page_title="Happy Birthday BSF! 🎂🎉",  
     page_icon="👑", 
     layout="centered"
 )
