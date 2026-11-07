@@ -2,7 +2,7 @@ import streamlit as st
 
 # 1. SETTING HALAMAN PREMIUM
 st.set_page_config(
-    page_title="Happy Birthday BSF! 🎂🎉",  
+    page_title="Happy Birthday BSF! 🎂🎉", 
     page_icon="👑", 
     layout="centered"
 )
@@ -10,16 +10,9 @@ st.set_page_config(
 # Ambil jumlah klik "Nggak" saat ini
 hitung_klik = st.session_state.get('hitung', 0)
 
-# Tombol "Iya" bakal terus membesar TANPA BATAS selama dia terus ngeklik "Nggak"
-font_size_iya = 10 + (hitung_klik * 6)
-padding_iya = 10 + (hitung_klik * 8)
-
-# Ukuran tombol "Nggak" MAKIN MENYUSUT KECIL
-font_size_nggak = max(18 - (hitung_klik * 2), 6)
-padding_nggak = max(10 - (hitung_klik * 1), 2)
-
-# Hitung level emosi/kemarahan web dari 0% sampai 100% (nambah 10% tiap klik)
-level_emosi = min(hitung_klik * 10, 100)
+# Ukuran font dan padding tombol "Iya" yang bakal makin bengkak/membesar tiap diklik "Nggak"
+font_size_iya = min(18 + (hitung_klik * 4), 36)
+padding_iya = min(10 + (hitung_klik * 5), 30)
 
 # 2. MENYUNTIKKAN ANIMATE.CSS DAN CSS DINAMIS UNTUK TOMBOL MEMBESAR
 st.markdown(f"""
@@ -27,9 +20,9 @@ st.markdown(f"""
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
-    /* Background gradasi mewah dreamy pastel */
+    /* Background gradasi mewah */
     .stApp {{
-        background: linear-gradient(135deg, #fbcfe8 0%, #e0e7ff 50%, #fde68a 100%);
+        background: linear-gradient(135deg, #1b4965 0%, #cae9ff 50%, #fecfef 100%);
     }}
     
     /* Wadah utama bergaya kaca transparan mewah (Glassmorphism) */
@@ -66,36 +59,8 @@ st.markdown(f"""
         text-align: center; 
         line-height: 1.8;
     }}
-
-    /* KOTAK METERAN EMOSI KUSTOM (GAYA GAME) */
-    .emotion-box {{
-        background: rgba(255, 255, 255, 0.6);
-        border-radius: 15px;
-        padding: 15px;
-        margin-bottom: 20px;
-        border: 2px solid #ff3366;
-        box-shadow: 0 4px 15px rgba(255, 51, 102, 0.2);
-    }}
     
-    .emotion-bar-container {{
-        width: 100%;
-        background-color: #e0e0e0;
-        border-radius: 20px;
-        height: 22px;
-        overflow: hidden;
-        margin-top: 8px;
-        box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
-    }}
-    
-    .emotion-bar-fill {{
-        width: {level_emosi}%;
-        height: 100%;
-        background: linear-gradient(90deg, #ff9a9e 0%, #ff3366 100%);
-        border-radius: 20px;
-        transition: width 0.4s ease-in-out;
-    }}
-    
-    /* TOMBOL IYA (TERUS MEMBESAR TANPA BATAS) */
+    /* TOMBOL IYA (OTOMATIS MEMBESAR BERDASARKAN JUMLAH KLIK NGGAK) */
     div[data-testid="stColumn"]:nth-of-type(1) .stButton>button {{
         background-color: #ff3366 !important;
         color: white !important;
@@ -110,25 +75,18 @@ st.markdown(f"""
     }}
     
     div[data-testid="stColumn"]:nth-of-type(1) .stButton>button:hover {{
-        transform: scale(1.03) !important;
+        transform: scale(1.05) !important;
     }}
     
-    /* Tombol Nggak (MAKIN LAMA MAKIN MENYUSUT KECIL) */
+    /* Tombol Nggak (Tetap standar) */
     div[data-testid="stColumn"]:nth-of-type(2) .stButton>button {{
         background-color: #ffffff !important;
         color: #777777 !important;
         border: 1px solid #cccccc !important;
         border-radius: 50px !important;
         font-weight: bold !important;
-        font-size: {font_size_nggak}!important;
-        padding: {padding_nggak} !important;
-        transition: all 0.3s ease !important;
-        animation: pulse infinite 2s;
-        box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4) !important;
-    }}
-    
-    div[data-testid="stColumn"]:nth-of-type(2) .stButton>button:hover {{
-        transform: scale(1.05) !important;
+        font-size: 18px !important;
+        padding: 10px 25px !important;
     }}
     </style>
     """, unsafe_allow_html=True)
@@ -154,81 +112,44 @@ if not st.session_state.selesai:
         # Teks tombol "Iya" makin lama makin memaksa
         teks_iya = "Iya"
         if st.session_state.hitung >= 2:
-            teks_iya = "Iya"
-        if st.session_state.hitung >= 3:
-            teks_iya = "IYA"
+            teks_iya = "Iya, Ngaku deh! 😭"
         if st.session_state.hitung >= 4:
-            teks_iya = "IYAA"
-        if st.session_state.hitung >= 5:
-            teks_iya = "IYAAAA"
+            teks_iya = "IYA KOK, UDAH PENCET AJA! 🫵"
         if st.session_state.hitung >= 6:
-            teks_iya = "IYAAAAAAA"
-        if st.session_state.hitung >= 7:
             teks_iya = "PENCET INI ATAU GUE NGAMBEK! 🔥"
             
         if st.button(teks_iya, use_container_width=True):
             st.session_state.selesai = True
             st.rerun()
-
+            
     with col2:
-        # Teks tombol "Nggak" makin lama makin ciut / susah dipencet
-        teks_nggak = "Nggak"
-        if st.session_state.hitung >= 2:
-            teks_nggak = "ogah"
-        if st.session_state.hitung >= 3:
-            teks_nggak = "ga"
-        if st.session_state.hitung >= 4:
-            teks_nggak = "ogah"
-        if st.session_state.hitung >= 5:
-            teks_nggak = "ga"
-        if st.session_state.hitung >= 6:
-            teks_nggak = "nggak"
-        if st.session_state.hitung >= 7:
-            teks_nggak = "ogah"
-
-    if st.button("Nggak", use_container_width=True):
+        if st.button("Nggak", use_container_width=True):
             st.session_state.hitung += 1
-            st.rerun()
-           
-# --- ALTERNATIF: METERAN EMOSI / KEMARAHAN WEB KUSTOM ---
-    st.markdown(f"""
-    <div class="emotion-box">
-        <div style="font-weight: bold; color: #ff3366; font-family: 'Poppins', sans-serif;">
-            🔥 Level Kekesalan Web: {level_emosi}%
-        </div>
-        <div class="emotion-bar-container">
-            <div class="emotion-bar-fill"></div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # REAKSI MENGELAK DENGAN EFEK LOOPING BERPUTAR TERUS
+            st.rerun() 
+
+    # REAKSI MENGELAK BERKALI-KALI
     if st.session_state.hitung > 0:
         h = st.session_state.hitung
         st.markdown('<div class="animate__animated animate__shakeX">', unsafe_allow_html=True)
         
-        # Menggunakan modulus (%) agar omelannya terus berputar (looping) tidak ada habisnya
-        pesan_loop = h % 6
-        
-        if pesan_loop == 1:
-            st.warning(f"Klik ke-{h}: Masa sih salah? lu jgn meragukan gw!")
-        elif pesan_loop == 2:
-            st.error(f"Klik ke-{h}: SYIT! JGN MERAGUKAN INGATAN GW! INGAT KOK GW 7 DESEMBER 😤")
-        elif pesan_loop == 3:
-            st.error(f"Klik ke-{h}: WOY MONYET!")
-        elif pesan_loop == 4:
-            st.info(f"Klik ke-{h}: Capek kan mencet tombol 'Nggak'?")
-        elif pesan_loop == 5:
-            st.info(f"Klik ke-{h}: PENCET TOMBOL SEBELAH GAK!?")
-        elif pesan_loop == 6:
-            st.info(f"Klik ke-{h}: GW AMBIL YE FURUYA REI LUHK!")
-        elif pesan_loop == 7:
-            st.info(f"Klik ke-{h}: GW BENCI LU!")
+        if h == 1:
+            st.warning("Masa sih salah? lu jgn meragukan gw!")
+        elif h == 2:
+            st.error("SYIT! JGN MERAGUKAN INGATAN GW! INGAT KOK GW 7 DESEMBER")
+        elif h == 3:
+            st.error("WOY MONYET!")
+        elif h == 4:
+            st.info("Capek kan mencet tombol 'Nggak'? Lihat tuh tombol 'Iya' makin gede! 💻😭")
+        elif h == 5:
+            st.info("PENCET TOMBOL SEBELAH GAK!? Tombolnya udah raksasa tuh!")
+        elif h == 6:
+            st.info("KURANG AJARRRR!!!!")
+        elif h == 7:
+            st.info("GW REBUT YE FURUYA REI LU!")
         else:
-            st.warning(f"Klik ke-{h}: LU ngeyel terus!")
-            
+            st.warning("Gak mau tahu, tombolnya makin membesar nutupin layar tuh, cepet ngaku! 😤")
         st.markdown('</div>', unsafe_allow_html=True)
-        
+
 # 5. LOGIKA HALAMAN KEJUTAN (SETELAH KLIK IYA)
 else:
     st.balloons()
