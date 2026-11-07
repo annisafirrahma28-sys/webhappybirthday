@@ -159,7 +159,7 @@ if not st.session_state.selesai:
             st.info("KURANG AJARRRR!!!!")
         elif h == 7:
             st.info("GW REBUT YE FURUYA REI LU!")
-        else:
+    else:
         # Kalau dia keras kepala ngeklik "Nggak" sampe 7 kali lebih, tombol Nggak-nya DIHAPUS! 
         # Sisa tombol "Iya" doang yang segede gaban memenuhi layar wkwk
         st.warning("⚠️ Tombol 'Nggak' panik ketakutan dan ngilang karena lu ngeyel mulu! 💀")
