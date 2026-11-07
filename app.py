@@ -14,6 +14,10 @@ hitung_klik = st.session_state.get('hitung', 0)
 font_size_iya = 10 + (hitung_klik * 6)
 padding_iya = 10 + (hitung_klik * 8)
 
+# Tombol "Nggak" bakal terus menyusut TANPA BATAS selama dia terus ngeklik "Iya"
+font_size_Nggak = 10 - (hitung_klik * 6)
+padding_Nggak = 10 - (hitung_klik * 8)
+
 # Hitung level emosi/kemarahan web dari 0% sampai 100% (nambah 10% tiap klik)
 level_emosi = min(hitung_klik * 10, 100)
 
@@ -186,8 +190,8 @@ if not st.session_state.selesai:
         if st.session_state.hitung >= 7:
             teks_nggak = "ogah"
             
-        if st.button(teks_iya, use_container_width=True):
-            st.session_state.selesai = True
+        if st.button("Nggak", use_container_width=True):
+            st.session_state.hitung += 1
             st.rerun()
             
 # --- ALTERNATIF: METERAN EMOSI / KEMARAHAN WEB KUSTOM ---
