@@ -18,8 +18,8 @@ padding_iya = 10 + (hitung_klik * 8)
 font_size_nggak = max(18 - (hitung_klik * 2), 6)
 padding_nggak = max(10 - (hitung_klik * 1), 2)
 
-# Hitung level emosi/kemarahan web dari 0% sampai 100% (nambah 10% tiap klik)
-level_emosi = min(hitung_klik * 10, 100)
+# Hitung level emosi/kemarahan web dari 0% sampai 1000% (nambah 10% tiap klik)
+level_emosi = min(hitung_klik * 10, 1000)
 
 # 2. MENYUNTIKKAN ANIMATE.CSS DAN CSS DINAMIS UNTUK TOMBOL MEMBESAR
 st.markdown(f"""
