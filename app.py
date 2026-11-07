@@ -312,7 +312,25 @@ else:
     with k3:
         if st.button("Kado Emas 👑", use_container_width=True):
             st.session_state.kado_pilih = "emas"
-            
+
+# AMAN: Menggunakan .get() agar tidak error KeyError meskipun state kosong
+    pilihan_kado = st.session_state.get("kado_pilih")
+    
+    if pilihan_kado == "merah":
+        st.error("🎁 **Isi Kado Merah:** Tiket gratis ditraktir seblak level neraka (syarat & ketentuan: dibayarin pakai doa doang wkwk).")
+    elif pilihan_kado == "biru":
+        st.info("🎀 **Isi Kado Biru:** Halusinasi 1 jam penuh ditemenin Furuya Rei versi karton 2D. Lumayan kan wkwk!")
+    elif pilihan_kado == "emas":
+        st.success("👑 **Isi Kado Emas:** Ucapan tulus dari lubuk hati terdalam: Semoga semua impian 17 tahunmu terwujud, sehat & sukses selalu bestie tercinta! ✨")
+
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    if st.button("Ulangi Kemegahan Dari Awal 🔄", use_container_width=True):
+        st.session_state.hitung = 0
+        st.session_state.selesai = False
+        st.session_state.kado_pilih = None
+        st.session_state.posisi_acak = False
+        st.rerun()
     if st.session_state.kado_pilih == "merah":
         st.error("🎁 **Isi Kado Merah:** Lu nraktir gw")
     elif st.session_state.kado_pilih == "biru":
