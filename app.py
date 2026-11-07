@@ -14,6 +14,9 @@ hitung_klik = st.session_state.get('hitung', 0)
 font_size_iya = 10 + (hitung_klik * 6)
 padding_iya = 10 + (hitung_klik * 8)
 
+# Hitung level emosi/kemarahan web dari 0% sampai 100% (nambah 10% tiap klik)
+level_emosi = min(hitung_klik * 10, 100)
+
 # 2. MENYUNTIKKAN ANIMATE.CSS DAN CSS DINAMIS UNTUK TOMBOL MEMBESAR
 st.markdown(f"""
     <!-- Load Animate.css untuk efek teks bergerak -->
@@ -58,6 +61,34 @@ st.markdown(f"""
         font-weight: 500;
         text-align: center; 
         line-height: 1.8;
+    }}
+
+    /* KOTAK METERAN EMOSI KUSTOM (GAYA GAME) */
+    .emotion-box {{
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 15px;
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 2px solid #ff3366;
+        box-shadow: 0 4px 15px rgba(255, 51, 102, 0.2);
+    }}
+    
+    .emotion-bar-container {{
+        width: 100%;
+        background-color: #e0e0e0;
+        border-radius: 20px;
+        height: 22px;
+        overflow: hidden;
+        margin-top: 8px;
+        box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+    }}
+    
+    .emotion-bar-fill {{
+        width: {level_emosi}%;
+        height: 100%;
+        background: linear-gradient(90deg, #ff9a9e 0%, #ff3366 100%);
+        border-radius: 20px;
+        transition: width 0.4s ease-in-out;
     }}
     
     /* TOMBOL IYA (OTOMATIS MEMBESAR BERDASARKAN JUMLAH KLIK NGGAK) */
@@ -139,10 +170,6 @@ if not st.session_state.selesai:
         if st.button("Nggak", use_container_width=True):
             st.session_state.hitung += 1
             st.rerun() 
-
-    # --- FITUR LOADING BAR & PERSENTASE KESABARAN (FIXED) ---
-    st.markdown(f"**🔋 Indikator Kesabaran Web: {persen_kesabaran}** %")
-    st.progress(persen_kesabaran / 100)
 
     # REAKSI MENGELAK DENGAN EFEK LOOPING BERPUTAR TERUS
     if st.session_state.hitung > 0:
