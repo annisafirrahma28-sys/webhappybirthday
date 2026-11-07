@@ -11,7 +11,7 @@ st.set_page_config(
 hitung_klik = st.session_state.get('hitung', 0)
 
 # Tombol "Iya" bakal terus membesar TANPA BATAS selama dia terus ngeklik "Nggak"
-font_size_iya = 18 + (hitung_klik * 6)
+font_size_iya = 10 + (hitung_klik * 6)
 padding_iya = 10 + (hitung_klik * 8)
 
 # 2. MENYUNTIKKAN ANIMATE.CSS DAN CSS DINAMIS UNTUK TOMBOL MEMBESAR
