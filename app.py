@@ -18,6 +18,8 @@ padding_iya = 10 + (hitung_klik * 8)
 font_size_nggak = max(18 - (hitung_klik * 2), 6)
 padding_nggak = max(10 - (hitung_klik * 1), 2)
 
+# Hitung level emosi/kemarahan web dari 0% sampai 100% (nambah 10% tiap klik)
+level_emosi = min(hitung_klik * 10, 100)
 
 # 2. MENYUNTIKKAN ANIMATE.CSS DAN CSS DINAMIS UNTUK TOMBOL MEMBESAR
 st.markdown(f"""
@@ -27,7 +29,7 @@ st.markdown(f"""
     <style>
     /* Background gradasi mewah */
     .stApp {{
-        background: linear-gradient(135deg, #1b4965 0%, #cae9ff 50%, #fecfef 100%);
+        background: linear-gradient(35deg, #fbcfe8 0%, #e0e7ff 50%, #fde68a 100%);
     }}
     
     /* Wadah utama bergaya kaca transparan mewah (Glassmorphism) */
@@ -64,6 +66,34 @@ st.markdown(f"""
         text-align: center; 
         line-height: 1.8;
     }}
+
+    /* KOTAK METERAN EMOSI KUSTOM (GAYA GAME) */
+    .emotion-box {{
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 15px;
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 2px solid #ff3366;
+        box-shadow: 0 4px 15px rgba(255, 51, 102, 0.2);
+    }}
+    
+    .emotion-bar-container {{
+        width: 100%;
+        background-color: #e0e0e0;
+        border-radius: 20px;
+        height: 22px;
+        overflow: hidden;
+        margin-top: 8px;
+        box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+    }}
+    
+    .emotion-bar-fill {{
+        width: {level_emosi}%;
+        height: 100%;
+        background: linear-gradient(90deg, #ff9a9e 0%, #ff3366 100%);
+        border-radius: 20px;
+        transition: width 0.4s ease-in-out;
+    }}
     
     /* TOMBOL IYA (OTOMATIS MEMBESAR BERDASARKAN JUMLAH KLIK NGGAK) */
     div[data-testid="stColumn"]:nth-of-type(1) .stButton>button {{
@@ -83,15 +113,17 @@ st.markdown(f"""
         transform: scale(1.05) !important;
     }}
     
-    /* Tombol Nggak (Tetap standar) */
+    /* Tombol Nggak (MAKIN LAMA MAKIN MENYUSUT KECIL) */
     div[data-testid="stColumn"]:nth-of-type(2) .stButton>button {{
         background-color: #ffffff !important;
         color: #777777 !important;
         border: 1px solid #cccccc !important;
         border-radius: 50px !important;
         font-weight: bold !important;
-        font-size: 18px !important;
-        padding: 10px 25px !important;
+        font-size: {font_size_nggak}!important;
+        padding: {padding_nggak} !important;
+        animation: pulse infinite 2s;
+        box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4) !important;
     }}
     </style>
     """, unsafe_allow_html=True)
