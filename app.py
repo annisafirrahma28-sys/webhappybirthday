@@ -179,10 +179,16 @@ if not st.session_state.selesai:
         teks_nggak = "Nggak"
         if st.session_state.hitung >= 2:
             teks_nggak = "ogah"
+        if st.session_state.hitung >= 3:
+            teks_nggak = "ga"
         if st.session_state.hitung >= 4:
+            teks_nggak = "ogah"
+        if st.session_state.hitung >= 5:
             teks_nggak = "ga"
         if st.session_state.hitung >= 6:
-            teks_nggak = "."
+            teks_nggak = "nggak"
+        if st.session_state.hitung >= 7:
+            teks_nggak = "ogah"
             
         if st.button(teks_nggak, use_container_width=True):
             st.session_state.hitung += 1
