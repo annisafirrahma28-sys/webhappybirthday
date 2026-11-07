@@ -83,21 +83,15 @@ st.markdown("""
         box-shadow: 0 8px 25px rgba(255, 51, 102, 0.4) !important;
     }
     
-    /* Efek tombol tidak/mengelak dibuat untuk tombol pilihan negatif */
+    /* Efek tombol bercahaya khusus untuk tombol pilihan negatif */
     div[data-testid="stColumn"]:nth-of-type(2) .stButton>button {
         background-color: #ffffff !important;
         color: #777777 !important;
         border: 1px solid #cccccc !important;
         animation: pulse infinite 2s;   
     }
-    
-    div[data-testid="stColumn"]:nth-of-type(2) .stButton>button {
-        background-color: #ffffff !important;
-        color: #777777 !important;
-        border: 1px solid #cccccc !important;
-    }
 
-    div[data-testid="stColumn"]:nth-of-type(1) .stButton>button:hover {
+    div[data-testid="stColumn"]:nth-of-type(2) .stButton>button:hover {
         transform: scale(1.1) !important;
         box-shadow: 0 8px 25px rgba(255, 51, 102, 0.4) !important;
     }
