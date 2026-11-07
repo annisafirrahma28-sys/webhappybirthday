@@ -163,35 +163,14 @@ if not st.session_state.selesai:
         elif pesan_loop == 7:
             st.info(f"Klik ke-{h}: GW BENCI LU!")
         else:
-            st.warning(f"Klik ke-{h}: Total ngeyel terus!")
+            st.warning(f"Klik ke-{h}: LU ngeyel terus!")
             
         st.markdown('</div>', unsafe_allow_html=True)
 
-# --- FITUR HITUNG MUNDUR / DOOM COUNTER DI BAWAH TOMBOL NGGAK ---
-    sisa_kesabaran = max(10 - st.session_state.hitung, 0)
-    
-    if st.session_state.hitung > 0:
-        h = st.session_state.hitung
-        st.markdown('<div class="animate__animated animate__shakeX">', unsafe_allow_html=True)
+# --- FITUR LOADING BAR & PERSENTASE KESABARAN ---
+    st.markdown(f"**🔋 Indikator Kesabaran Web: {persen_kesabaran}%**")
+    st.progress(persen_kesabaran / 100) # Streamlit progress bar menerima nilai dari 0.0 sampai 1.0
         
-        # Omelan Berputar (Looping)
-        pesan_loop = h % 6
-        
-        if pesan_loop == 1:
-            st.warning(f"⚠️ Sisa Kesempatan Nolak: {sisa_kesabaran} | Masa sih salah? lu jgn meragukan gw! 🧐")
-        elif pesan_loop == 2:
-            st.error(f"⚠️ Sisa Kesempatan Nolak: {sisa_kesabaran} | SYIT! JGN MERAGUKAN INGATAN GW! 7 DESEMBER 😤")
-        elif pesan_loop == 3:
-            st.error(f"⚠️ Sisa Kesempatan Nolak: {sisa_kesabaran} | WOY MONYET! Ngaku aja napa! 🐒")
-        elif pesan_loop == 4:
-            st.info(f"⚠️ Sisa Kesempatan Nolak: {sisa_kesabaran} | Capek kan mencet 'Nggak'? Tombol 'Iya'-nya makin raksasa tuh! 💻😭")
-        elif pesan_loop == 5:
-            st.info(f"⚠️ Sisa Kesempatan Nolak: {sisa_kesabaran} | PENCET TOMBOL SEBELAH GAK!? Gak bakal bisa kabur lu! 🫵🔥")
-        else:
-            st.warning(f"⚠️ Sisa Kesempatan Nolak: {sisa_kesabaran} | Total ngeyel {h} kali! Web ini bakal nge-loop terus sampe subuh! 🤣💀")
-            
-        st.markdown('</div>', unsafe_allow_html=True)
-
 # 5. LOGIKA HALAMAN KEJUTAN (SETELAH KLIK IYA)
 else:
     st.balloons()
