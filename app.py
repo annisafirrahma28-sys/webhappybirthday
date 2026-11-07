@@ -14,6 +14,10 @@ hitung_klik = st.session_state.get('hitung', 0)
 font_size_iya = 10 + (hitung_klik * 6)
 padding_iya = 10 + (hitung_klik * 8)
 
+# Tombol "Nggak" makin menyusut / mengecil (minimal font 8px, padding 2px)
+font_size_nggak = max(18 - (hitung_klik * 2), 8)
+padding_nggak = max(10 - (hitung_klik * 1), 2)
+
 # Hitung level emosi/kemarahan web dari 0% sampai 100% (nambah 10% tiap klik)
 level_emosi = min(hitung_klik * 10, 100)
 
@@ -170,7 +174,18 @@ if not st.session_state.selesai:
         if st.button("Nggak", use_container_width=True):
             st.session_state.hitung += 1
             st.rerun() 
-
+# --- ALTERNATIF: METERAN EMOSI / KEMARAHAN WEB KUSTOM ---
+    st.markdown(f"""
+    <div class="emotion-box">
+        <div style="font-weight: bold; color: #ff3366; font-family: 'Poppins', sans-serif;">
+            🔥 Level Kekesalan Web: {level_emosi}%
+        </div>
+        <div class="emotion-bar-container">
+            <div class="emotion-bar-fill"></div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
     # REAKSI MENGELAK DENGAN EFEK LOOPING BERPUTAR TERUS
     if st.session_state.hitung > 0:
         h = st.session_state.hitung
