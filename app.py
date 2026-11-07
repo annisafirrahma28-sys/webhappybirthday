@@ -130,8 +130,8 @@ st.markdown(f"""
         border: 1px solid #cccccc !important;
         border-radius: 50px !important;
         font-weight: bold !important;
-        font-size: {font_size_nggak}!important;
-        padding: {padding_nggak} !important;
+        font-size: 16px!important;
+        padding: 8px 12px !important;
         animation: pulse infinite 2s;
         box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4) !important;
     }}
