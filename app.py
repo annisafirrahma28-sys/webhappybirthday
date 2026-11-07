@@ -18,7 +18,7 @@ padding_iya = 10 + (hitung_klik * 8)
 # Hitung level emosi/kemarahan web dari 0% sampai 100% (nambah 10% tiap klik)
 level_emosi = min(hitung_klik * 10, 100)
 
-# 2. MENYUNTIKKAN ANIMATE.CSS DAN CSS DINAMIS UNTUK TOMBOL MEMBESAR
+# 2. MENYUNTIKKAN ANIMATE.CSS DAN CSS DINAMIS
 st.markdown(f"""
     <!-- Load Animate.css untuk efek teks bergerak -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -77,7 +77,7 @@ st.markdown(f"""
         line-height: 1.8;
     }}
 
-    /* KOTAK METERAN EMOSI KUSTOM (GAYA GAME) */
+    /* KOTAK METERAN EMOSI KUSTOM */
     .emotion-box {{
         background: rgba(255, 255, 255, 0.6);
         border-radius: 15px;
@@ -105,8 +105,8 @@ st.markdown(f"""
         transition: width 0.4s ease-in-out;
     }}
     
-    /* TOMBOL IYA */
-    div[data-testid="stColumn"]:nth-of-type(1) .stButton>button {{
+    /* HANYA TOMBOL IYA DI HALAMAN UTAMA YANG MEMBESAR */
+    div[data-testid="stColumn"]:nth-of-type(1) > div > div > div > .stButton>button {{
         background-color: #ff3366 !important;
         color: white !important;
         border: none !important;
@@ -119,21 +119,16 @@ st.markdown(f"""
         box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4) !important;
     }}
     
-    div[data-testid="stColumn"]:nth-of-type(1) .stButton>button:hover {{
-        transform: scale(1.05) !important;
-    }}
-    
-    /* TOMBOL NGGAK */
-    div[data-testid="stColumn"]:nth-of-type(2) .stButton>button {{
+    /* TOMBOL NGGAK DI HALAMAN UTAMA */
+    div[data-testid="stColumn"]:nth-of-type(2) > div > div > div > .stButton>button {{
         background-color: #ffffff !important;
         color: #777777 !important;
         border: 1px solid #cccccc !important;
         border-radius: 50px !important;
         font-weight: bold !important;
-        font-size: 16px!important;
+        font-size: 16px !important;
         padding: 8px 12px !important;
-        animation: pulse infinite 2s;
-        box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4) !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
     }}
     </style>
     """, unsafe_allow_html=True)
