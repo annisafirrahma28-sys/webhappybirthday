@@ -14,7 +14,7 @@ hitung_klik = st.session_state.get('hitung', 0)
 font_size_iya = 10 + (hitung_klik * 6)
 padding_iya = 10 + (hitung_klik * 8)
 
-# Tombol "Nggak" makin menyusut / mengecil (minimal font 8px, padding 2px)
+# Tombol "Nggak" makin menyusut / mengecil selama dia terus ngeklik "Iya"
 font_size_nggak = max(18 - (hitung_klik * 2), 8)
 padding_nggak = max(10 - (hitung_klik * 1), 2)
 
