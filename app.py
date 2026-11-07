@@ -77,7 +77,7 @@ st.markdown("""
     }
     
     /* Efek Tombol tidak/mengelak dibuat standar abu-abu */
-    div[data-testid="stColumn"]:nth-of-type(1) .stButton>button {
+    div[data-testid="stColumn"]:nth-of-type(2) .stButton>button {
         background-color: #ffffff !important;
         color: #777777 !important;
         border: 1px solid #cccccc !important;
@@ -123,7 +123,7 @@ if not st.session_state.selesai:
             st.rerun()
             
     with col2:
-        if st.button("Nggak / Salah Orang", use_container_width=True):
+        if st.button("Nggak", use_container_width=True):
             st.session_state.hitung += 1
             
     if st.session_state.hitung > 0:
