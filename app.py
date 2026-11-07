@@ -313,7 +313,7 @@ else:
         if st.button("Kado Emas 👑", use_container_width=True):
             st.session_state.kado_pilih = "emas"
             
-   if st.session_state.kado_pilih == "merah":
+    if st.session_state.kado_pilih == "merah":
         st.error("🎁 **Isi Kado Merah:** Lu nraktir gw")
     elif st.session_state.kado_pilih == "biru":
         st.info("🎀 **Isi Kado Biru:** Gw ditraktir lu!")
