@@ -10,9 +10,14 @@ st.set_page_config(
 # Ambil jumlah klik "Nggak" saat ini
 hitung_klik = st.session_state.get('hitung', 0)
 
-# Ukuran font dan padding tombol "Iya" yang bakal makin bengkak/membesar tiap diklik "Nggak"
-font_size_iya = min(18 + (hitung_klik * 4), 36)
-padding_iya = min(10 + (hitung_klik * 5), 30)
+# Tombol "Iya" bakal terus membesar TANPA BATAS selama dia terus ngeklik "Nggak"
+font_size_iya = 10 + (hitung_klik * 6)
+padding_iya = 10 + (hitung_klik * 8)
+
+# Ukuran tombol "Nggak" MAKIN MENYUSUT KECIL
+font_size_nggak = max(18 - (hitung_klik * 2), 6)
+padding_nggak = max(10 - (hitung_klik * 1), 2)
+
 
 # 2. MENYUNTIKKAN ANIMATE.CSS DAN CSS DINAMIS UNTUK TOMBOL MEMBESAR
 st.markdown(f"""
