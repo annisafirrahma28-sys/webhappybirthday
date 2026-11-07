@@ -10,10 +10,6 @@ st.set_page_config(
 # Ambil jumlah klik "Nggak" saat ini untuk mengatur ukuran tombol secara dinamis
 hitung_klik = st.session_state.get('hitung', 0)
 
-# Hitung ukuran font tombol "Iya" agar makin besar tiap kali diklik "Nggak" (mulai dari 18px, maks 32px)
-font_size_iya = min(18 + (hitung_klik * 2), 32)
-padding_iya = min(10 + (hitung_klik * 3), 25)
-
 # 2. MENYUNTIKKAN ANIMATE.CSS DAN EMAS/PINK GLASSMORPHISM STYLE
 st.markdown("""
     <!-- Load Animate.css untuk efek teks bergerak -->
@@ -22,7 +18,7 @@ st.markdown("""
     <style>
     /* Background gradasi mewah */
     .stApp {
-        background: linear-gradient(#1b4965, #cae9ff 0%, #fecfef 99%, #fecfef 100%);
+        background: linear-gradient(135deg, #1b4965 0%, #cae9ff 50%, #fecfef 100%);
     }
     
     /* Wadah utama bergaya kaca transparan mewah (Glassmorphism) */
@@ -70,7 +66,7 @@ st.markdown("""
         box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
     }
     
-    /* Efek tombol bercahaya khusus untuk tombol pilihan positif */
+    /* Tombol pilihan positif */
     div[data-testid="stColumn"]:nth-of-type(1) .stButton>button {
         background-color: #ff3366 !important;
         color: white !important;
@@ -79,21 +75,15 @@ st.markdown("""
     }
     
     div[data-testid="stColumn"]:nth-of-type(1) .stButton>button:hover {
-        transform: scale(1.1) !important;
+        transform: scale(1.05) !important;
         box-shadow: 0 8px 25px rgba(255, 51, 102, 0.4) !important;
     }
     
-    /* Efek tombol bercahaya khusus untuk tombol pilihan negatif */
+    /* Tombol pilihan negatif */
     div[data-testid="stColumn"]:nth-of-type(2) .stButton>button {
         background-color: #ffffff !important;
         color: #777777 !important;
         border: 1px solid #cccccc !important;
-        animation: pulse infinite 2s;   
-    }
-
-    div[data-testid="stColumn"]:nth-of-type(2) .stButton>button:hover {
-        transform: scale(1.1) !important;
-        box-shadow: 0 8px 25px rgba(255, 51, 102, 0.4) !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -111,20 +101,20 @@ if not st.session_state.selesai:
     
     # Bungkus konten ke dalam kartu kaca mewah
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-    # Mengganti tautan GIF kosong dengan link GIF perayaan yang valid
     st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnU1dTRneTI5ZHRkZXFlbGV5czZxY25sZ2p4MmNobnF4aGR0eDFmNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/QsomqbDcRm9xMFxJMu/giphy.gif", use_container_width=True)
     st.markdown('<p class="mega-text">Denger-denger hari ini ada yang jatah umurnya berkurang nih... <br><b>Kamu yang ulang tahun hari ini kan? 👀</b></p>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
-# --- BAGIAN TOMBOL DINAMIS (YANG BIKIN KOLOM IYA MEMBESAR & NGGAK MENYUSUT) ---
+    # --- BAGIAN TOMBOL DINAMIS (MEMBESAR & MENYUSUT) ---
     lebar_kolom_iya = min(1 + (st.session_state.hitung * 0.4), 3.0)
     lebar_kolom_nggak = max(1 - (st.session_state.hitung * 0.15), 0.3)
     
-col1, col2 = st.columns([lebar_kolom_iya, lebar_kolom_nggak])
+    col1, col2 = st.columns([lebar_kolom_iya, lebar_kolom_nggak])
     
-with col1:
-        # Teks tombol "Iya" makin memaksa
+    with col1:
         teks_iya = "Iya"
+        if st.session_state.hitung >= 2:
+            teks_iya = "IYA"
         if st.session_state.hitung >= 3:
             teks_iya = "IYA"
         if st.session_state.hitung >= 4:
@@ -132,20 +122,20 @@ with col1:
         if st.session_state.hitung >= 5:
             teks_iya = "IYA"
         if st.session_state.hitung >= 6:
-            teks_iya = "IYA"
+            teks_iya = "PENCET INI WOY!"
         elif st.session_state.hitung >= 7:
-            teks_iya = "IYA"
+            teks_iya = "IYA"
             
         if st.button(teks_iya, use_container_width=True):
             st.session_state.selesai = True
             st.rerun()
             
-with col2:
-    if st.button("Nggak", use_container_width=True):
+    with col2:
+        if st.button("Nggak", use_container_width=True):
             st.session_state.hitung += 1
             st.rerun() 
 
-   # REAKSI MENGELAK BERKALI-KALI
+    # REAKSI MENGELAK BERKALI-KALI
     if st.session_state.hitung > 0:
         h = st.session_state.hitung
         st.markdown('<div class="animate__animated animate__shakeX">', unsafe_allow_html=True)
