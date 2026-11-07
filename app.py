@@ -11,8 +11,8 @@ st.set_page_config(
 hitung_klik = st.session_state.get('hitung', 0)
 
 # Tombol "Iya" bakal terus membesar TANPA BATAS selama dia terus ngeklik "Nggak"
-font_size_iya = min(10 + (hitung_klik * 6),  100)
-padding_iya =min( 10 + (hitung_klik * 8), 110)
+font_size_iya = min(10 + (hitung_klik * 6),  80)
+padding_iya =min( 10 + (hitung_klik * 8), 85)
 
 # Hitung level emosi/kemarahan web dari 0% sampai 100% (nambah 10% tiap klik)
 level_emosi = min(hitung_klik * 10, 100)
