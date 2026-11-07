@@ -164,7 +164,7 @@ if not st.session_state.selesai:
         elif h == 7:
             st.info("GW REBUT YE FURUYA REI LU!")
     else:
-            st.warning("Gak mau tahu, pokoknya web ini bakal ngambek dan nge-loop terus sampai kamu ngaku! 😤")
+        st.warning("Gak mau tahu, pokoknya web ini bakal ngambek dan nge-loop terus sampai kamu ngaku! 😤")
         st.markdown('</div>', unsafe_allow_html=True)
 
 # 5. LOGIKA HALAMAN KEJUTAN (SETELAH KLIK IYA)
