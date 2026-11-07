@@ -176,4 +176,4 @@ if not st.session_state.selesai:
                  
     st.markdown('<div class="glass-card" style="margin-top: 15px;">', unsafe_allow_html=True)
     st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnU1dTRneTI5ZHRkZXFlbGV5czZxY25sZ2p4MmNobnF4aGR0eDFmNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/QsomqbDcRm9xMFxJMu/giphy.gif", use_container_width=True)
-    st.markdown('<p class="mega-text">Denger-denger hari ini ada yang jatah umurnya berkurang
+    st.markdown('<p class="mega-text">'Denger-denger hari ini ada yang jatah umurnya berkurang
