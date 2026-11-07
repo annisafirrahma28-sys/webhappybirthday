@@ -123,8 +123,6 @@ if not st.session_state.selesai:
             teks_iya = "IYA"
         if st.session_state.hitung >= 6:
             teks_iya = "PENCET INI WOY!"
-        if st.session_state.hitung >= 7:
-            teks_iya = "IYA"
             
         if st.button(teks_iya, use_container_width=True):
             st.session_state.selesai = True
