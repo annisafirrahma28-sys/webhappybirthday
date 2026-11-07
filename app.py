@@ -18,8 +18,8 @@ padding_iya = 10 + (hitung_klik * 8)
 font_size_nggak = max(18 - (hitung_klik * 2), 6)
 padding_nggak = max(10 - (hitung_klik * 1), 2)
 
-# Hitung level emosi/kemarahan web dari 0% sampai 1000% (nambah 10% tiap klik)
-level_emosi = min(hitung_klik * 10, 1000)
+# Hitung level emosi/kemarahan web dari 0% sampai 100% (nambah 10% tiap klik)
+level_emosi = min(hitung_klik * 10, 100)
 
 # 2. MENYUNTIKKAN ANIMATE.CSS DAN CSS DINAMIS UNTUK TOMBOL MEMBESAR
 st.markdown(f"""
@@ -55,6 +55,19 @@ st.markdown(f"""
         text-shadow: 3px 3px 6px rgba(0,0,0,0.15);
         margin-top: 10px;
         margin-bottom: 10px;
+    }}
+
+    /* Subtitle Badge Rame */
+    .badge-info {{
+        display: inline-block;
+        background: #ff3366;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 10px rgba(255,51,102,0.3);
     }}
     
     /* Teks Narasi */
@@ -134,12 +147,29 @@ if 'hitung' not in st.session_state:
 if 'selesai' not in st.session_state:
     st.session_state.selesai = False
 if 'buka_kado' not in st.session_state:
-    st.session_state.buka_kado = False
+    st.session_state.buka_kado = None
 
 # 4. LOGIKA HALAMAN UTAMA
 if not st.session_state.selesai:
-    st.markdown('<div class="animate__animated animate__fadeInDown mega-title">👑 sweet seventeen 👑</div>', unsafe_allow_html=True)
+    # Marquee / Teks berjalan darurat di atas
+    st.markdown("""
+        <marquee behavior="scroll" direction="left" style="background: #ff3366; color: white; font-weight: bold; padding: 6px; border-radius: 10px; margin-bottom: 15px;">
+            🚨 PERHATIAN: ADA YANG ULANG TAHUN HARI INI! DILARANG KERAS MENGELAK ATAU MEMENCET TOMBOL NGGAK! 🚨 WAKTUNYA HURU-HARA SWEET SEVENTEEN 👑✨
+        </marquee>
+    """, unsafe_allow_html=True)
+
+    st.markdown('<div class="animate__animated animate__fadeInDown mega-title">👑 SWEET SEVENTEEN PARTY 👑</div>', unsafe_allow_html=True)
+    st.markdown('<div style="text-align: center;"><span class="badge-info">🎂 SPESIAL 7 DESEMBER • WARNING: BIKIN EMOSI 🎂</span></div>', unsafe_allow_html=True)
     
+    st.markdown('<div class="glass-card animate__animated animate__fadeIn">', unsafe_allow_html=True)
+
+    # Dua GIF berdampingan biar meriah
+    col_g1, col_g2 = st.columns(2)
+    with col_g1:
+        st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnU1dTRneTI5ZHRkZXFlbGV5czZxY25sZ2p4MmNobnF4aGR0eDFmNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/QsomqbDcRm9xMFxJMu/giphy.gif", use_container_width=True)
+    with col_g2:
+        st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExajJoNHo0OHY2bTR3azFrcWp5N3lhbjRkMGhucTNkYndmNW96eG5yayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3oz8xAFtphMRurshu0/giphy.gif", use_container_width=True
+                 
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
     st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnU1dTRneTI5ZHRkZXFlbGV5czZxY25sZ2p4MmNobnF4aGR0eDFmNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/QsomqbDcRm9xMFxJMu/giphy.gif", use_container_width=True)
     st.markdown('<p class="mega-text">Denger-denger hari ini ada yang jatah umurnya berkurang nih... <br><b>Kamu yang ulang tahun hari ini kan? 👀</b></p>', unsafe_allow_html=True)
@@ -214,9 +244,9 @@ if not st.session_state.selesai:
         st.markdown('</div>', unsafe_allow_html=True)
 
 
-# 5. LOGIKA HALAMAN KEJUTAN (SETELAH KLIK IYA)
+# 5. LOGIKA HALAMAN KEJUTAN (SETELAH KLIK IYA - MAKIN RAMAI & RUSUH)
 else:
-    # EFEK PARTY MODE BERUNTUN (Balon + Salju + Peringatan Heboh)
+    # EFEK PARTY MODE MAKSIMAL
     st.balloons()
     st.snow()
     
@@ -236,15 +266,32 @@ else:
     """, unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
     
-    # Tombol Ekstra: Buka Kado Misterius di dalam kartu
-    if not st.session_state.buka_kado:
-        if st.button("Buka Kado Misterius 🎁", use_container_width=True):
-            st.session_state.buka_kado = True
-            st.rerun()
-    else:
-        st.success("🎉 SELAMAT! CONGRATULATION!")
+    st.markdown("---")
+    st.markdown("### 🎁 PILIH KADO MISTERIUSMU SEKARANG! (Pilih salah satu)")
     
-    if st.button("Ulangi Kemegahan 🔄", use_container_width=True):
+    k1, k2, k3 = st.columns(3)
+    with k1:
+        if st.button("Kado Kotak Merah 📦", use_container_width=True):
+            st.session_state.kado_pilih = "merah"
+    with k2:
+        if st.button("Kado Pita Biru 🎀", use_container_width=True):
+            st.session_state.kado_pilih = "biru"
+    with k3:
+        if st.button("Kado Emas 👑", use_container_width=True):
+            st.session_state.kado_pilih = "emas"
+            
+    # Reaksi isi kado
+    if st.session_state.kado_pilih == "merah":
+        st.error("🎁 **Isi Kado Merah:** Lu nraktir gw.")
+    elif st.session_state.kado_pilih == "biru":
+        st.info("🎀 **Isi Kado Biru:** Lu nraktir gw")
+    elif st.session_state.kado_pilih == "emas":
+        st.success("👑 **Isi Kado Emas:** Gw ditraktir lu")
+
+    st.markdown('</div>', unsafe_allow_html=True)
+    
+    if st.button("Ulangi Kemegahan Dari Awal 🔄", use_container_width=True):
         st.session_state.hitung = 0
         st.session_state.selesai = False
+        st.session_state.kado_pilih = None
         st.rerun()
