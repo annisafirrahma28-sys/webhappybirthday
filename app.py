@@ -1,4 +1,5 @@
 import streamlit as st
+import random
 
 # 1. SETTING HALAMAN PREMIUM
 st.set_page_config(
@@ -13,10 +14,6 @@ hitung_klik = st.session_state.get('hitung', 0)
 # Tombol "Iya" bakal terus membesar TANPA BATAS selama dia terus ngeklik "Nggak"
 font_size_iya = 10 + (hitung_klik * 6)
 padding_iya = 10 + (hitung_klik * 8)
-
-# Ukuran tombol "Nggak" MAKIN MENYUSUT KECIL
-font_size_nggak = max(18 - (hitung_klik * 2), 6)
-padding_nggak = max(10 - (hitung_klik * 1), 2)
 
 # Hitung level emosi/kemarahan web dari 0% sampai 100% (nambah 10% tiap klik)
 level_emosi = min(hitung_klik * 10, 100)
@@ -148,6 +145,8 @@ if 'selesai' not in st.session_state:
     st.session_state.selesai = False
 if 'buka_kado' not in st.session_state:
     st.session_state.buka_kado = None
+if 'posisi_acak' not in st.session_state:
+    st.session_state.posisi_acak = False
 
 # 4. LOGIKA HALAMAN UTAMA
 if not st.session_state.selesai:
@@ -166,17 +165,51 @@ if not st.session_state.selesai:
     # Dua GIF berdampingan biar meriah
     col_g1, col_g2 = st.columns(2)
     with col_g1:
-        st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnU1dTRneTI5ZHRkZXFlbGV5czZxY25sZ2p4MmNobnF4aGR0eDFmNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/QsomqbDcRm9xMFxJMu/giphy.gif", use_container_width=True)
+        st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjhlOGQ1ZDQ3a3hrZzRtYXh0NTJnZm1qbWs0dHcxeGkydG9jcGo5cSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/y4nk5bgwpWL6T5Ax9y/giphy.gif", use_container_width=True)
     with col_g2:
-        st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExajJoNHo0OHY2bTR3azFrcWp5N3lhbjRkMGhucTNkYndmNW96eG5yayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3oz8xAFtphMRurshu0/giphy.gif", use_container_width=True)
+        st.image("https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3M3FkanJyeGYyOXR2cWdrYXd1ZWs1NXR3N2lhNjRpbGwwc3VwazdhYSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/1nymcq1Nzg1OzE5PyW/giphy.gif", use_container_width=True)
                  
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
     st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnU1dTRneTI5ZHRkZXFlbGV5czZxY25sZ2p4MmNobnF4aGR0eDFmNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/QsomqbDcRm9xMFxJMu/giphy.gif", use_container_width=True)
     st.markdown('<p class="mega-text">Denger-denger hari ini ada yang jatah umurnya berkurang nih... <br><b>Kamu yang ulang tahun hari ini kan? 👀</b></p>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
-    col1, col2 = st.columns(2)
+    # --- EFEK KOLOM DINAMIS & POSISI ACAK (KABUR) ---
+    lebar_iya = 1 + (st.session_state.hitung * 0.6)
+    lebar_nggak = max(1 - (st.session_state.hitung * 0.15), 0.15)
     
+    # Kalau posisi_acak True, posisi tombol "Iya" dan "Nggak" ditukar (acak posisi)
+    if st.session_state.posisi_acak:
+        kolom_kiri, kolom_kanan = st.columns([lebar_nggak, lebar_iya])
+        btn_kiri = kolom_kiri.button("Nggak", use_container_width=True)
+
+    # Kalau posisi_acak True, posisi tombol "Iya" dan "Nggak" ditukar (acak posisi)
+    if st.session_state.posisi_acak:
+        kolom_kiri, kolom_kanan = st.columns([lebar_nggak, lebar_iya])
+        btn_kiri = kolom_kiri.button("Nggak", use_container_width=True)
+        
+        teks_iya = "Iya, Aku Ulang Tahun! 🎉"
+        if st.session_state.hitung >= 2:
+            teks_iya = "Iya, Ngaku deh! 😭"
+        if st.session_state.hitung >= 4:
+            teks_iya = "IYA KOK, UDAH PENCET AJA! 🫵"
+        if st.session_state.hitung >= 6:
+            teks_iya = "PENCET INI ATAU GUE NGAMBEK! 🔥"
+            
+        btn_kanan = kolom_kanan.button(teks_iya, use_container_width=True)
+        
+        # Logika tombol diklik di posisi acak
+        if btn_kiri:
+            st.session_state.hitung += 1
+            st.session_state.posisi_acak = random.choice([True, False])
+            st.rerun()
+        if btn_kanan:
+            st.session_state.selesai = True
+            st.rerun()
+            
+    else:
+        col1, col2 = st.columns([lebar_iya, lebar_nggak]
+                                
     with col1:
         # Teks tombol "Iya" makin lama makin memaksa
         teks_iya = "Iya"
@@ -208,7 +241,7 @@ if not st.session_state.selesai:
     st.markdown(f"""
     <div class="emotion-box">
         <div style="font-weight: bold; color: #ff3366; font-family: 'Poppins', sans-serif;">
-            🔥 Level Kekesalan Web: {level_emosi}%
+            🔥 Level Kekesalan: {level_emosi}%
         </div>
         <div class="emotion-bar-container">
             <div class="emotion-bar-fill"></div>
@@ -284,9 +317,9 @@ else:
     if st.session_state.kado_pilih == "merah":
         st.error("🎁 **Isi Kado Merah:** Lu nraktir gw.")
     elif st.session_state.kado_pilih == "biru":
-        st.info("🎀 **Isi Kado Biru:** Lu nraktir gw")
+        st.info("🎀 **Isi Kado Biru:** Gw ditraktir lu")
     elif st.session_state.kado_pilih == "emas":
-        st.success("👑 **Isi Kado Emas:** Gw ditraktir lu")
+        st.success("👑 **Isi Kado Emas:** Lu sedekah ke gw")
 
     st.markdown('</div>', unsafe_allow_html=True)
     
@@ -294,4 +327,5 @@ else:
         st.session_state.hitung = 0
         st.session_state.selesai = False
         st.session_state.kado_pilih = None
+        st.session_state.posisi_acak = False
         st.rerun()
