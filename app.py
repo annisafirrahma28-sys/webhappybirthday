@@ -145,7 +145,7 @@ if not st.session_state.selesai:
 
     col1, col2 = st.columns(2)
     
-     with col1:
+    with col1:
         # Teks tombol "Iya" makin lama makin memaksa
         teks_iya = "Iya"
         if st.session_state.hitung >= 2:
