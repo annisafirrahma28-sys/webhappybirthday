@@ -208,7 +208,7 @@ if not st.session_state.selesai:
             st.rerun()
             
     else:
-        col1, col2 = st.columns([lebar_iya, lebar_nggak]
+        col1, col2 = st.columns([lebar_iya, lebar_nggak])
                                 
     with col1:
         # Teks tombol "Iya" makin lama makin memaksa
