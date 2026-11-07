@@ -109,7 +109,7 @@ st.markdown(f"""
         transform: scale(1.05) !important;
     }}
     
-    /* Tombol Nggak (Tetap standar tapi kolomnya menyusut) */
+    /* Tombol Nggak (Tetap standar) */
     div[data-testid="stColumn"]:nth-of-type(2) .stButton>button {{
         background-color: #ffffff !important;
         color: #777777 !important;
