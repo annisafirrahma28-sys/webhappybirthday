@@ -123,7 +123,7 @@ if not st.session_state.selesai:
             st.rerun()
             
     with col2:
-        if st.button("Nggak" use_container_width=True):
+        if st.button("Nggak", use_container_width=True):
             st.session_state.hitung += 1
 
     # REAKSI MENGELAK DENGAN EFEK GETAR/GUNCANGAN
