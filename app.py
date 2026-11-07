@@ -91,6 +91,14 @@ if 'hitung' not in st.session_state:
 if 'selesai' not in st.session_state:
     st.session_state.selesai = False
 
+# --- PEMUTAR MUSIK DI DEPAN (MENYESUAIKAN NAMA FILE DI GITHUB) ---
+try:
+    audio_file = open("glue song.mp3", "rb")
+    audio_bytes = audio_file.read()
+    st.audio(audio_bytes, format="audio/mp3", autoplay=True)
+except FileNotFoundError:
+    pass
+
 # 4. LOGIKA HALAMAN UTAMA
 if not st.session_state.selesai:
     # Judul dengan animasi berdenyut masuk
