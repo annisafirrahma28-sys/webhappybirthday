@@ -191,8 +191,8 @@ else:
     Happy Birthday my dearest beloved best friend. 17 tahun astagaa, BUAT KTP WOY!! tapi gausah buru buru buat KTP nya sih, 
     nanti kamu tersadar kalau kamu ini WNI wkekekekek. Wish you all the best yahh kekasih Furuya Rei!! 
     OMG im lucky to meet you dah asli. Mungkin you lah alasan gw lahir ke bumi. pas dikasih 77 pertanyaan terselip pertanyaan 
-    ''Apakah kamu mau lahir ke bumi? disana ada Tiara'' gw be like ''Lho ya boleh wong ditawari'' :vvVVvV SORRYY FREAK BGT YYHHHH wkekekek maaf ✨ ✨<br><br>
-    <span style="font-size: 22px; color: #ff3366;"><b>🎁 Pertanyaan Terakhir: Kapan nih kita bertemu lagih ><? Ditunggu undangannya ya! 🍕🍰</b></span>
+    ''Apakah kamu mau lahir ke bumi? disana ada Tiara'' gw be like ''Lho ya boleh wong ditawari'' :vvVVvV SORRYY FREAK BGT YYHHHH wkekekek maaf <br><br>
+    <span style="font-size: 22px; color: #ff3366;"><b> Pertanyaan Terakhir: Kapan nih kita bertemu lagih ><? Ditunggu undangannya ya!</b></span>
     </p>
     """, unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
