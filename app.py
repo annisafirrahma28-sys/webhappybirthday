@@ -40,10 +40,10 @@ st.markdown("""
     
     /* Judul Megah Animasi */
     .mega-title { 
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Times New Roman', sans-serif;
         font-size: 32px !important; 
         font-weight: 900; 
-        color: #ff3366; 
+        color: #fb6f92; 
         text-align: center;
         text-shadow: 3px 3px 6px rgba(0,0,0,0.15);
         margin-top: 10px;
@@ -52,7 +52,7 @@ st.markdown("""
     
     /* Teks Narasi */
     .mega-text { 
-        font-family: 'Inter', sans-serif;
+        font-family: 'Helvetica', sans-serif;
         font-size: 20px !important; 
         color: #333333;
         font-weight: 500;
