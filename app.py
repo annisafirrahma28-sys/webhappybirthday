@@ -173,8 +173,10 @@ if not st.session_state.selesai:
     with col2:
         # Teks tombol "Nggak" bakal ikut berubah jadi makin panik/kecil
         teks_nggak = "Nggak"
-        if st.session_state.hitung >= 1:
+        if st.session_state.hitung >= 3:
             teks_nggak = "ih ogah"
+        if st.session_state.hitung >= 5:
+            teks_nggak = "ga"
             
         if st.button(teks_nggak, use_container_width=True):
             st.session_state.hitung += 1
