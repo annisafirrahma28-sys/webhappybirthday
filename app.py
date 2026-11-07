@@ -11,14 +11,14 @@ st.set_page_config(
 # Ambil jumlah klik "Nggak" saat ini
 hitung_klik = st.session_state.get('hitung', 0)
 
-# Tombol "Iya" bakal terus membesar TANPA BATAS selama dia terus ngeklik "Nggak"
-font_size_iya = 10 + (hitung_klik * 6)
-padding_iya = 10 + (hitung_klik * 8)
+# Tombol "Iya" bakal terus membesar TANPA BATAS secara smooth
+font_size_iya = 16 + (hitung_klik * 5)
+padding_iya = 12 + (hitung_klik * 6)
 
-# Hitung level emosi/kemarahan web dari 0% sampai 100% (nambah 10% tiap klik)
+# Hitung level emosi/kemarahan web dari 0% sampai 100%
 level_emosi = min(hitung_klik * 10, 100)
 
-# 2. MENYUNTIKKAN ANIMATE.CSS DAN CSS DINAMIS
+# 2. MENYUNTIKKAN ANIMATE.CSS DAN CSS TOMBOL SMOOTH BERWARNA
 st.markdown(f"""
     <!-- Load Animate.css untuk efek teks bergerak -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -105,30 +105,42 @@ st.markdown(f"""
         transition: width 0.4s ease-in-out;
     }}
     
-    /* HANYA TOMBOL IYA DI HALAMAN UTAMA YANG MEMBESAR */
-    div[data-testid="stColumn"]:nth-of-type(1) > div > div > div > .stButton>button {{
-        background-color: #ff3366 !important;
+    /* STYLING KHUSUS TOMBOL IYA DI HALAMAN UTAMA (BERWARNA & SMOOTH) */
+    div[data-testid="stColumn"]:nth-of-type(1) button {{
+        background: linear-gradient(135deg, #ff3366 0%, #ff6b81 100%) !important;
         color: white !important;
         border: none !important;
-        border-radius: 50px !important;
-        font-weight: bold !important;
+        border-radius: 20px !important;
+        font-weight: 800 !important;
         font-size: {font_size_iya}px !important;
-        padding: {padding_iya}px 25px !important;
-        transition: all 0.3s ease !important;
-        animation: pulse infinite 2s;
-        box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4) !important;
+        padding: {padding_iya}px 20px !important;
+        transition: all 0.2s ease-in-out !important;
+        box-shadow: 0 6px 20px rgba(255, 51, 102, 0.4) !important;
+        width: 100% !important;
     }}
     
-    /* TOMBOL NGGAK DI HALAMAN UTAMA */
-    div[data-testid="stColumn"]:nth-of-type(2) > div > div > div > .stButton>button {{
-        background-color: #ffffff !important;
-        color: #777777 !important;
-        border: 1px solid #cccccc !important;
-        border-radius: 50px !important;
-        font-weight: bold !important;
+    div[data-testid="stColumn"]:nth-of-type(1) button:hover {{
+        transform: scale(1.02) !important;
+        background: linear-gradient(135deg, #e62e5c 0%, #ff526d 100%) !important;
+    }}
+    
+    /* STYLING KHUSUS TOMBOL NGGAK DI HALAMAN UTAMA */
+    div[data-testid="stColumn"]:nth-of-type(2) button {{
+        background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%) !important;
+        color: #475569 !important;
+        border: 2px solid #cbd5e1 !important;
+        border-radius: 20px !important;
+        font-weight: 700 !important;
         font-size: 16px !important;
-        padding: 8px 12px !important;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+        padding: 12px 20px !important;
+        transition: all 0.2s ease-in-out !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+        width: 100% !important;
+    }}
+    
+    div[data-testid="stColumn"]:nth-of-type(2) button:hover {{
+        background: #e2e8f0 !important;
+        color: #1e293b !important;
     }}
     </style>
     """, unsafe_allow_html=True)
@@ -158,152 +170,10 @@ if not st.session_state.selesai:
 
     col_g1, col_g2 = st.columns(2)
     with col_g1:
-        st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjhlOGQ1ZDQ3a3hrZzRtYXh0NTJnZm1qbWs0dHcxeGkydG9jcGo5cSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/y4nk5bgwpWL6T5Ax9y/giphy.gif", use_container_width=True)
+        st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExy4nk5bgwpWL6T5Ax9y/giphy.gif", use_container_width=True)
     with col_g2:
         st.image("https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3M3FkanJyeGYyOXR2cWdrYXd1ZWs1NXR3N2lhNjRpbGwwc3VwazdhYSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/1nymcq1Nzg1OzE5PyW/giphy.gif", use_container_width=True)
                  
-    st.markdown('<div class="glass-card">', unsafe_allow_html=True)
+    st.markdown('<div class="glass-card" style="margin-top: 15px;">', unsafe_allow_html=True)
     st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnU1dTRneTI5ZHRkZXFlbGV5czZxY25sZ2p4MmNobnF4aGR0eDFmNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/QsomqbDcRm9xMFxJMu/giphy.gif", use_container_width=True)
-    st.markdown('<p class="mega-text">Denger-denger hari ini ada yang jatah umurnya berkurang nih... <br><b>Kamu yang ulang tahun hari ini kan? 👀</b></p>', unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
-
-    # --- EFEK KOLOM DINAMIS & POSISI ACAK ---
-    lebar_iya = 1 + (st.session_state.hitung * 0.6)
-    lebar_nggak = max(1 - (st.session_state.hitung * 0.15), 0.15)
-    
-    if st.session_state.posisi_acak:
-        kolom_kiri, kolom_kanan = st.columns([lebar_nggak, lebar_iya])
-        btn_kiri = kolom_kiri.button("Nggak", use_container_width=True)
-        
-        teks_iya = "Iya, Aku Ulang Tahun! 🎉"
-        if st.session_state.hitung >= 2:
-            teks_iya = "Iya, Ngaku deh! 😭"
-        if st.session_state.hitung >= 4:
-            teks_iya = "IYA KOK, UDAH PENCET AJA! 🫵"
-        if st.session_state.hitung >= 6:
-            teks_iya = "PENCET INI ATAU GUE NGAMBEK! 🔥"
-            
-        btn_kanan = kolom_kanan.button(teks_iya, use_container_width=True)
-        
-        if btn_kiri:
-            st.session_state.hitung += 1
-            st.session_state.posisi_acak = random.choice([True, False])
-            st.rerun()
-        if btn_kanan:
-            st.session_state.selesai = True
-            st.rerun()
-            
-    else:
-        col1, col2 = st.columns([lebar_iya, lebar_nggak])
-                
-        with col1:
-            teks_iya = "Iya"
-            if st.session_state.hitung >= 2:
-                teks_iya = "Iya"
-            if st.session_state.hitung >= 3:
-                teks_iya = "IYA"
-            if st.session_state.hitung >= 4:
-                teks_iya = "IYAA"
-            if st.session_state.hitung >= 5:
-                teks_iya = "IYAAAA"
-            if st.session_state.hitung >= 6:
-                teks_iya = "IYAAAAAAA"
-            if st.session_state.hitung >= 7:
-                teks_iya = "PENCET INI ATAU GUE NGAMBEK! 🔥"
-                
-            if st.button(teks_iya, use_container_width=True):
-                st.session_state.selesai = True
-                st.rerun()
-
-        with col2:
-            if st.button("Nggak", use_container_width=True):
-                st.session_state.hitung += 1
-                st.session_state.posisi_acak = random.choice([True, False])
-                st.rerun() 
-
-    # --- METERAN EMOSI ---
-    st.markdown(f"""
-    <div class="emotion-box">
-        <div style="font-weight: bold; color: #ff3366; font-family: 'Poppins', sans-serif;">
-            🔥 Level Kekesalan: {level_emosi}%
-        </div>
-        <div class="emotion-bar-container">
-            <div class="emotion-bar-fill"></div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # REAKSI MENGELAK LOOPING
-    if st.session_state.hitung > 0:
-        h = st.session_state.hitung
-        st.markdown('<div class="animate__animated animate__shakeX">', unsafe_allow_html=True)
-        
-        pesan_loop = h % 6
-        
-        if pesan_loop == 1:
-            st.warning(f"Klik ke-{h}: Masa sih salah? lu jgn meragukan gw!")
-        elif pesan_loop == 2:
-            st.error(f"Klik ke-{h}: SYIT! JGN MERAGUKAN INGATAN GW! INGAT KOK GW 7 DESEMBER 😤")
-        elif pesan_loop == 3:
-            st.error(f"Klik ke-{h}: WOY MONYET!")
-        elif pesan_loop == 4:
-            st.info(f"Klik ke-{h}: Capek kan mencet tombol 'Nggak'?")
-        elif pesan_loop == 5:
-            st.info(f"Klik ke-{h}: PENCET TOMBOL SEBELAH GAK!?")
-        else:
-            st.warning(f"Klik ke-{h}: LU ngeyel terus!")
-            
-        st.markdown('</div>', unsafe_allow_html=True)
-
-# 5. LOGIKA HALAMAN KEJUTAN
-else:
-    st.balloons()
-    st.snow()
-    
-    st.markdown('<div class="animate__animated animate__jackInTheBox mega-title">✨ HAPPY BIRTHDAY, PENDEK! ✨</div>', unsafe_allow_html=True)
-    
-    st.markdown('<div class="glass-card animate__animated animate__fadeInUp">', unsafe_allow_html=True)
-    st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnU1dTRneTI5ZHRkZXFlbGV5czZxY25sZ2p4MmNobnF4aGR0eDFmNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/IaGqkVQit54xT6BUDj/giphy.gif", width=300)
-    st.markdown("""
-    <p class="mega-text">
-    🎂 <b>Happy Birthday, Bsf! 🥳🎈</b> 🎂<br><br>
-    Happy Birthday my dearest beloved best friend. 17 tahun astagaa, BUAT KTP WOY!! tapi gausah buru buru buat KTP nya sih, 
-    nanti kamu tersadar kalau kamu ini WNI wkekekekek. Wish you all the best yahh kekasih Furuya Rei!! 
-    OMG im lucky to meet you dah asli. Mungkin you lah alasan gw lahir ke bumi. pas dikasih 77 pertanyaan terselip pertanyaan 
-    ''Apakah kamu mau lahir ke bumi? disana ada Tiara'' gw be like ''Lho ya boleh wong ditawari'' :vvVVvV SORRYY FREAK BGT YYHHHH wkekekek maaf ✨<br><br>
-    <span style="font-size: 22px; color: #ff3366;"><b>🎁 Pertanyaan Terakhir: Kapan nih kita bertemu lagih? Ditunggu undangannya ya! 🍕🍰</b></span>
-    </p>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("---")
-    st.markdown("### 🎁 PILIH KADO MISTERIUSMU SEKARANG! (Pilih salah satu)")
-    
-    k1, k2, k3 = st.columns(3)
-    with k1:
-        if st.button("Kado Kotak Merah 📦", use_container_width=True):
-            st.session_state.kado_pilih = "merah"
-    with k2:
-        if st.button("Kado Pita Biru 🎀", use_container_width=True):
-            st.session_state.kado_pilih = "biru"
-    with k3:
-        if st.button("Kado Emas 👑", use_container_width=True):
-            st.session_state.kado_pilih = "emas"
-
-    # AMAN: Menggunakan .get() untuk menghindari KeyError
-    pilihan_kado = st.session_state.get("kado_pilih", None)
-    
-    if pilihan_kado == "merah":
-        st.error("🎁 **Isi Kado Merah:** Lu nraktir gw!")
-    elif pilihan_kado == "biru":
-        st.info("🎀 **Isi Kado Biru:** Gw ditraktir lu!")
-    elif pilihan_kado == "emas":
-        st.success("👑 **Isi Kado Emas:** Prabowo lengser wkwk!")
-
-    st.markdown('</div>', unsafe_allow_html=True)
-    
-    if st.button("Ulangi Kemegahan Dari Awal 🔄", use_container_width=True):
-        st.session_state.hitung = 0
-        st.session_state.selesai = False
-        st.session_state.kado_pilih = None
-        st.session_state.posisi_acak = False
-        st.rerun()
+    st.markdown('<p class="mega-text">Denger-denger hari ini ada yang jatah umurnya berkurang
