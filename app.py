@@ -137,7 +137,7 @@ if not st.session_state.selesai:
             st.info("PENCET TOMBOL SEBELAH GAK!?")
         elif h == 6:
             st.info("KURANG AJARRRR!!!!")
-         elif h == 7:
+        elif h == 7:
             st.info("GW REBUT YE FURUYA REI LU!")
         else:
             st.warning("Gak mau tahu, pokoknya web ini bakal ngambek dan nge-loop terus sampai kamu ngaku! 😤")
