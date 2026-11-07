@@ -187,7 +187,7 @@ else:
     st.image("https://media.giphy.com/media/xTkgqj6W1lI5q144z6/giphy.gif", width=300)
     st.markdown("""
     <p class="mega-text">
-    <b>Selamat berkurang jatah umur ya!</b> 🎂<br><br>
+    <b>Selamat berkurang jatah umur ya!</b><br><br>
     Happy Birthday my dearest beloved best friend. 17 tahun astagaa, BUAT KTP WOY!! tapi gausah buru buru buat KTP nya sih, 
     nanti kamu tersadar kalau kamu ini WNI wkekekekek. Wish you all the best yahh kekasih Furuya Rei!! 
     OMG im lucky to meet you dah asli. Mungkin you lah alasan gw lahir ke bumi. pas dikasih 77 pertanyaan terselip pertanyaan 
