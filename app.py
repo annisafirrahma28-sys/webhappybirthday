@@ -14,10 +14,6 @@ hitung_klik = st.session_state.get('hitung', 0)
 font_size_iya = 10 + (hitung_klik * 6)
 padding_iya = 10 + (hitung_klik * 8)
 
-# Tombol "Nggak" makin menyusut / mengecil selama dia terus ngeklik "Iya"
-font_size_nggak = max(18 - (hitung_klik * 2), 8)
-padding_nggak = max(10 - (hitung_klik * 1), 2)
-
 # Hitung level emosi/kemarahan web dari 0% sampai 100% (nambah 10% tiap klik)
 level_emosi = min(hitung_klik * 10, 100)
 
@@ -113,7 +109,7 @@ st.markdown(f"""
         transform: scale(1.05) !important;
     }}
     
-    /* Tombol Nggak (Tetap standar) */
+    /* Tombol Nggak (Tetap standar tapi kolomnya menyusut) */
     div[data-testid="stColumn"]:nth-of-type(2) .stButton>button {{
         background-color: #ffffff !important;
         color: #777777 !important;
