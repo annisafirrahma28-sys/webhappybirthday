@@ -119,7 +119,14 @@ if not st.session_state.selesai:
     col1, col2 = st.columns(2)
     
     with col1:
-        if st.button("Iya, Aku Ulang Tahun! 🎉✨", use_container_width=True):
+        # Teks tombol "Iya" makin memaksa
+        teks_iya = "Iya"
+        if st.session_state.hitung >= 3:
+            teks_iya = "IYA"
+        elif st.session_state.hitung >= 5:
+            teks_iya = "IYA"
+            
+        if st.button(teks_iya, use_container_width=True):
             st.session_state.selesai = True
             st.rerun()
             
