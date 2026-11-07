@@ -146,7 +146,7 @@ with col2:
             st.rerun() 
 
     # REAKSI MENGELAK DENGAN EFEK GETAR/GUNCANGAN     
-        if st.session_state.hitung > 0:
+    if st.session_state.hitung > 0:
         h = st.session_state.hitung
         st.markdown('<div class="animate__animated animate__shakeX">', unsafe_allow_html=True)
         
