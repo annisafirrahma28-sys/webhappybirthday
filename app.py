@@ -66,7 +66,7 @@ st.markdown("""
         box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
     }
     
-    /* Tombol pilihan positif */
+    /* Efek tombol bercahaya khusus untuk pilihan positif */
     div[data-testid="stColumn"]:nth-of-type(1) .stButton>button {
         background-color: #ff3366 !important;
         color: white !important;
@@ -79,11 +79,18 @@ st.markdown("""
         box-shadow: 0 8px 25px rgba(255, 51, 102, 0.4) !important;
     }
     
-    /* Tombol pilihan negatif */
+    /*  Efek tombol bercahaya khusus untuk pilihan negatif */
     div[data-testid="stColumn"]:nth-of-type(2) .stButton>button {
         background-color: #ffffff !important;
         color: #777777 !important;
         border: 1px solid #cccccc !important;
+        animation : pulse infinite 2s;
+    }
+
+     div[data-testid="stColumn"]:nth-of-type(1) .stButton>button:hover {
+        transform: scale(1.05) !important;
+        box-shadow: 0 8px 25px rgba(255, 51, 102, 0.4) !important;
+    }
     }
     </style>
     """, unsafe_allow_html=True)
@@ -116,11 +123,11 @@ if not st.session_state.selesai:
         if st.session_state.hitung >= 2:
             teks_iya = "IYA"
         if st.session_state.hitung >= 3:
-            teks_iya = "IYA"
+            teks_iya = "IYAA"
         if st.session_state.hitung >= 4:
-            teks_iya = "IYA"
+            teks_iya = "IYAAA"
         if st.session_state.hitung >= 5:
-            teks_iya = "IYA"
+            teks_iya = "IYAAAA"
         if st.session_state.hitung >= 6:
             teks_iya = "PENCET INI WOY!"
             
