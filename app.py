@@ -14,6 +14,10 @@ hitung_klik = st.session_state.get('hitung', 0)
 font_size_iya = 10 + (hitung_klik * 6)
 padding_iya = 10 + (hitung_klik * 8)
 
+# Ukuran tombol "Nggak" MAKIN MENYUSUT KECIL
+font_size_nggak = max(18 - (hitung_klik * 2), 6)
+padding_nggak = max(10 - (hitung_klik * 1), 2)
+
 # Hitung level emosi/kemarahan web dari 0% sampai 100% (nambah 10% tiap klik)
 level_emosi = min(hitung_klik * 10, 100)
 
@@ -91,7 +95,7 @@ st.markdown(f"""
         transition: width 0.4s ease-in-out;
     }}
     
-    /* TOMBOL IYA (OTOMATIS MEMBESAR BERDASARKAN JUMLAH KLIK NGGAK) */
+    /* TOMBOL IYA (TERUS MEMBESAR TANPA BATAS) */
     div[data-testid="stColumn"]:nth-of-type(1) .stButton>button {{
         background-color: #ff3366 !important;
         color: white !important;
@@ -106,18 +110,18 @@ st.markdown(f"""
     }}
     
     div[data-testid="stColumn"]:nth-of-type(1) .stButton>button:hover {{
-        transform: scale(1.05) !important;
+        transform: scale(1.03) !important;
     }}
     
-    /* Tombol Nggak (Tetap standar) */
+    /* Tombol Nggak (MAKIN LAMA MAKIN MENYUSUT KECIL) */
     div[data-testid="stColumn"]:nth-of-type(2) .stButton>button {{
         background-color: #ffffff !important;
         color: #777777 !important;
         border: 1px solid #cccccc !important;
         border-radius: 50px !important;
         font-weight: bold !important;
-        font-size: 18px !important;
-        padding: 10px 25px !important;
+        font-size: {font_size_nggak}!important;
+        padding: {padding_nggak} !important;
         transition: all 0.3s ease !important;
         animation: pulse infinite 2s;
         box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4) !important;
@@ -143,10 +147,6 @@ if not st.session_state.selesai:
     st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnU1dTRneTI5ZHRkZXFlbGV5czZxY25sZ2p4MmNobnF4aGR0eDFmNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/QsomqbDcRm9xMFxJMu/giphy.gif", use_container_width=True)
     st.markdown('<p class="mega-text">Denger-denger hari ini ada yang jatah umurnya berkurang nih... <br><b>Kamu yang ulang tahun hari ini kan? 👀</b></p>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
-
-    # Mengatur lebar kolom: Tombol "Iya" makin lebar, tombol "Nggak" makin ciut dan sempit!
-    lebar_iya = min(1 + (hitung_klik * 0.5), 3.5)
-    lebar_nggak = max(1 - (hitung_klik * 0.12), 0.2)
 
     col1, col2 = st.columns(2)
     
