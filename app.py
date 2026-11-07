@@ -87,6 +87,13 @@ st.markdown(f"""
         font-weight: bold !important;
         font-size: 18px !important;
         padding: 10px 25px !important;
+        transition: all 0.3s ease !important;
+        animation: pulse infinite 2s;
+        box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4) !important;
+    }}
+    
+    div[data-testid="stColumn"]:nth-of-type(2) .stButton>button:hover {{
+        transform: scale(1.05) !important;
     }}
     </style>
     """, unsafe_allow_html=True)
