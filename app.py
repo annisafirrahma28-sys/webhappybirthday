@@ -158,16 +158,15 @@ if not st.session_state.selesai:
         elif h == 3:
             st.error("WOY MONYET!")
         elif h == 4:
-            st.info("Capek kan mencet tombol 'Nggak'?")
+            st.info("PENCET TOMBOL SEBELAH GAK!??")
         elif h == 5:
-            st.info("PENCET TOMBOL SEBELAH GAK!?")
+            st.info("KURANG AJARRRRR")
         elif h == 6:
-            st.info("KURANG AJARRRR!!!!")
-        elif h == 7:
             st.info("GW REBUT YE FURUYA REI LU!")
+        elif h == 7:
+            st.info("Gak mau tahu, pokoknya web ini bakal ngambek dan nge-loop terus sampai kamu ngaku! 😤!")
     else:
-        st.error("Gak mau tahu, pokoknya web ini bakal ngambek dan nge-loop terus sampai kamu ngaku! 😤")
-    st.markdown('</div>', unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
 
 # 5. LOGIKA HALAMAN KEJUTAN (SETELAH KLIK IYA)
 else:
