@@ -141,11 +141,11 @@ with col1:
             st.rerun()
             
 with col2:
-        if st.button("Nggak", use_container_width=True):
+    if st.button("Nggak", use_container_width=True):
             st.session_state.hitung += 1
             st.rerun() 
 
-    # REAKSI MENGELAK DENGAN EFEK GETAR/GUNCANGAN     
+   # REAKSI MENGELAK BERKALI-KALI
     if st.session_state.hitung > 0:
         h = st.session_state.hitung
         st.markdown('<div class="animate__animated animate__shakeX">', unsafe_allow_html=True)
