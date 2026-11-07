@@ -105,7 +105,7 @@ st.markdown(f"""
         transition: width 0.4s ease-in-out;
     }}
     
-    /* TOMBOL IYA (OTOMATIS MEMBESAR BERDASARKAN JUMLAH KLIK NGGAK) */
+    /* TOMBOL IYA */
     div[data-testid="stColumn"]:nth-of-type(1) .stButton>button {{
         background-color: #ff3366 !important;
         color: white !important;
@@ -123,7 +123,7 @@ st.markdown(f"""
         transform: scale(1.05) !important;
     }}
     
-    /* Tombol Nggak (MAKIN LAMA MAKIN MENYUSUT KECIL) */
+    /* TOMBOL NGGAK */
     div[data-testid="stColumn"]:nth-of-type(2) .stButton>button {{
         background-color: #ffffff !important;
         color: #777777 !important;
@@ -144,13 +144,12 @@ if 'hitung' not in st.session_state:
 if 'selesai' not in st.session_state:
     st.session_state.selesai = False
 if 'kado_pilih' not in st.session_state:
-    st.session_state.buka_kado = None
+    st.session_state.kado_pilih = None
 if 'posisi_acak' not in st.session_state:
     st.session_state.posisi_acak = False
 
 # 4. LOGIKA HALAMAN UTAMA
 if not st.session_state.selesai:
-    # Marquee / Teks berjalan darurat di atas
     st.markdown("""
         <marquee behavior="scroll" direction="left" style="background: #ff3366; color: white; font-weight: bold; padding: 6px; border-radius: 10px; margin-bottom: 15px;">
             🚨 PERHATIAN: ADA YANG ULANG TAHUN HARI INI! DILARANG KERAS MENGELAK ATAU MEMENCET TOMBOL NGGAK! 🚨 WAKTUNYA HURU-HARA SWEET SEVENTEEN 👑✨
@@ -162,7 +161,6 @@ if not st.session_state.selesai:
     
     st.markdown('<div class="glass-card animate__animated animate__fadeIn">', unsafe_allow_html=True)
 
-    # Dua GIF berdampingan biar meriah
     col_g1, col_g2 = st.columns(2)
     with col_g1:
         st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjhlOGQ1ZDQ3a3hrZzRtYXh0NTJnZm1qbWs0dHcxeGkydG9jcGo5cSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/y4nk5bgwpWL6T5Ax9y/giphy.gif", use_container_width=True)
@@ -174,16 +172,10 @@ if not st.session_state.selesai:
     st.markdown('<p class="mega-text">Denger-denger hari ini ada yang jatah umurnya berkurang nih... <br><b>Kamu yang ulang tahun hari ini kan? 👀</b></p>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # --- EFEK KOLOM DINAMIS & POSISI ACAK (KABUR) ---
+    # --- EFEK KOLOM DINAMIS & POSISI ACAK ---
     lebar_iya = 1 + (st.session_state.hitung * 0.6)
     lebar_nggak = max(1 - (st.session_state.hitung * 0.15), 0.15)
     
-    # Kalau posisi_acak True, posisi tombol "Iya" dan "Nggak" ditukar (acak posisi)
-    if st.session_state.posisi_acak:
-        kolom_kiri, kolom_kanan = st.columns([lebar_nggak, lebar_iya])
-        btn_kiri = kolom_kiri.button("Nggak", use_container_width=True)
-
-    # Kalau posisi_acak True, posisi tombol "Iya" dan "Nggak" ditukar (acak posisi)
     if st.session_state.posisi_acak:
         kolom_kiri, kolom_kanan = st.columns([lebar_nggak, lebar_iya])
         btn_kiri = kolom_kiri.button("Nggak", use_container_width=True)
@@ -198,7 +190,6 @@ if not st.session_state.selesai:
             
         btn_kanan = kolom_kanan.button(teks_iya, use_container_width=True)
         
-        # Logika tombol diklik di posisi acak
         if btn_kiri:
             st.session_state.hitung += 1
             st.session_state.posisi_acak = random.choice([True, False])
@@ -209,35 +200,33 @@ if not st.session_state.selesai:
             
     else:
         col1, col2 = st.columns([lebar_iya, lebar_nggak])
-                                
-    with col1:
-        # Teks tombol "Iya" makin lama makin memaksa
-        teks_iya = "Iya"
-        if st.session_state.hitung >= 2:
+                
+        with col1:
             teks_iya = "Iya"
-        if st.session_state.hitung >= 3:
-            teks_iya = "IYA"
-        if st.session_state.hitung >= 4:
-            teks_iya = "IYAA"
-        if st.session_state.hitung >= 5:
-            teks_iya = "IYAAAA"
-        if st.session_state.hitung >= 6:
-            teks_iya = "IYAAAAAAA"
-        if st.session_state.hitung >= 7:
-            teks_iya = "PENCET INI ATAU GUE NGAMBEK! 🔥"
-            
-        if st.button(teks_iya, use_container_width=True):
-            st.session_state.selesai = True
-            st.rerun()
+            if st.session_state.hitung >= 2:
+                teks_iya = "Iya"
+            if st.session_state.hitung >= 3:
+                teks_iya = "IYA"
+            if st.session_state.hitung >= 4:
+                teks_iya = "IYAA"
+            if st.session_state.hitung >= 5:
+                teks_iya = "IYAAAA"
+            if st.session_state.hitung >= 6:
+                teks_iya = "IYAAAAAAA"
+            if st.session_state.hitung >= 7:
+                teks_iya = "PENCET INI ATAU GUE NGAMBEK! 🔥"
+                
+            if st.button(teks_iya, use_container_width=True):
+                st.session_state.selesai = True
+                st.rerun()
 
-            
-    with col2:
-        # Teks tombol TETAP "Nggak" konsisten tidak berubah-ubah, tapi kotaknya menyusut ciut
-        if st.button("Nggak", use_container_width=True):
-            st.session_state.hitung += 1
-            st.rerun() 
+        with col2:
+            if st.button("Nggak", use_container_width=True):
+                st.session_state.hitung += 1
+                st.session_state.posisi_acak = random.choice([True, False])
+                st.rerun() 
 
-   # --- ALTERNATIF: METERAN EMOSI / KEMARAHAN WEB KUSTOM ---
+    # --- METERAN EMOSI ---
     st.markdown(f"""
     <div class="emotion-box">
         <div style="font-weight: bold; color: #ff3366; font-family: 'Poppins', sans-serif;">
@@ -249,12 +238,11 @@ if not st.session_state.selesai:
     </div>
     """, unsafe_allow_html=True)
     
-    # REAKSI MENGELAK DENGAN EFEK LOOPING BERPUTAR TERUS
+    # REAKSI MENGELAK LOOPING
     if st.session_state.hitung > 0:
         h = st.session_state.hitung
         st.markdown('<div class="animate__animated animate__shakeX">', unsafe_allow_html=True)
         
-        # Menggunakan modulus (%) agar omelannya terus berputar (looping) tidak ada habisnya
         pesan_loop = h % 6
         
         if pesan_loop == 1:
@@ -267,19 +255,13 @@ if not st.session_state.selesai:
             st.info(f"Klik ke-{h}: Capek kan mencet tombol 'Nggak'?")
         elif pesan_loop == 5:
             st.info(f"Klik ke-{h}: PENCET TOMBOL SEBELAH GAK!?")
-        elif pesan_loop == 6:
-            st.info(f"Klik ke-{h}: GW AMBIL YE FURUYA REI LUHK!")
-        elif pesan_loop == 7:
-            st.info(f"Klik ke-{h}: GW BENCI LU!")
         else:
             st.warning(f"Klik ke-{h}: LU ngeyel terus!")
             
         st.markdown('</div>', unsafe_allow_html=True)
 
-
-# 5. LOGIKA HALAMAN KEJUTAN (SETELAH KLIK IYA - MAKIN RAMAI & RUSUH)
+# 5. LOGIKA HALAMAN KEJUTAN
 else:
-    # EFEK PARTY MODE MAKSIMAL
     st.balloons()
     st.snow()
     
@@ -297,7 +279,6 @@ else:
     <span style="font-size: 22px; color: #ff3366;"><b>🎁 Pertanyaan Terakhir: Kapan nih kita bertemu lagih? Ditunggu undangannya ya! 🍕🍰</b></span>
     </p>
     """, unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
     
     st.markdown("---")
     st.markdown("### 🎁 PILIH KADO MISTERIUSMU SEKARANG! (Pilih salah satu)")
@@ -313,33 +294,15 @@ else:
         if st.button("Kado Emas 👑", use_container_width=True):
             st.session_state.kado_pilih = "emas"
 
-# AMAN: Menggunakan .get() agar tidak error KeyError meskipun state kosong
+    # AMAN: Menggunakan .get() untuk menghindari KeyError
     pilihan_kado = st.session_state.get("kado_pilih", None)
     
     if pilihan_kado == "merah":
-        st.error("🎁 **Isi Kado Merah:** Tiket gratis ditraktir seblak level neraka (syarat & ketentuan: dibayarin pakai doa doang wkwk).")
+        st.error("🎁 **Isi Kado Merah:** Lu nraktir gw!")
     elif pilihan_kado == "biru":
-        st.info("🎀 **Isi Kado Biru:** Halusinasi 1 jam penuh ditemenin Furuya Rei versi karton 2D. Lumayan kan wkwk!")
-    elif pilihan_kado == "emas":
-        st.success("👑 **Isi Kado Emas:** Ucapan tulus dari lubuk hati terdalam: Semoga semua impian 17 tahunmu terwujud, sehat & sukses selalu bestie tercinta! ✨")
-
-    st.markdown('</div>', unsafe_allow_html=True)
-    
-    if st.button("Ulangi Kemegahan Dari Awal 🔄", use_container_width=True):
-        st.session_state.hitung = 0
-        st.session_state.selesai = False
-        st.session_state.kado_pilih = None
-        st.session_state.posisi_acak = False
-        st.rerun()
-
-    if "kado_pilih" not in st.session_state:
-        st.session_state.kado_pilih = None
-    if st.session_state.get(kado_pilih) == "merah":
-        st.error("🎁 **Isi Kado Merah:** Lu nraktir gw")
-    elif st.session_state.kado_pilih == "biru":
         st.info("🎀 **Isi Kado Biru:** Gw ditraktir lu!")
-    elif st.session_state.kado_pilih == "emas":
-        st.success("👑 **Isi Kado Emas:** Prabowo lengser")
+    elif pilihan_kado == "emas":
+        st.success("👑 **Isi Kado Emas:** Prabowo lengser wkwk!")
 
     st.markdown('</div>', unsafe_allow_html=True)
     
