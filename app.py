@@ -170,7 +170,6 @@ with col2:
 
 # 5. LOGIKA HALAMAN KEJUTAN (SETELAH KLIK IYA)
 else:
-    # Dobel efek biar makin meriah
     st.balloons()
     st.snow()
     
