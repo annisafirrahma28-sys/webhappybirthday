@@ -140,6 +140,10 @@ if not st.session_state.selesai:
             st.session_state.hitung += 1
             st.rerun() 
 
+    # --- FITUR LOADING BAR & PERSENTASE KESABARAN (FIXED) ---
+    st.markdown(f"**🔋 Indikator Kesabaran Web: {persen_kesabaran}** %")
+    st.progress(persen_kesabaran / 100)
+
     # REAKSI MENGELAK DENGAN EFEK LOOPING BERPUTAR TERUS
     if st.session_state.hitung > 0:
         h = st.session_state.hitung
@@ -166,10 +170,6 @@ if not st.session_state.selesai:
             st.warning(f"Klik ke-{h}: LU ngeyel terus!")
             
         st.markdown('</div>', unsafe_allow_html=True)
-
-# --- FITUR LOADING BAR & PERSENTASE KESABARAN ---
-    st.markdown(f"**🔋 Indikator Kesabaran Web: {persen_kesabaran}%**")
-    st.progress(persen_kesabaran / 100) # Streamlit progress bar menerima nilai dari 0.0 sampai 1.0
         
 # 5. LOGIKA HALAMAN KEJUTAN (SETELAH KLIK IYA)
 else:
