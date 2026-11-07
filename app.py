@@ -133,6 +133,8 @@ if 'hitung' not in st.session_state:
     st.session_state.hitung = 0
 if 'selesai' not in st.session_state:
     st.session_state.selesai = False
+if 'buka_kado' not in st.session_state:
+    st.session_state.buka_kado = False
 
 # 4. LOGIKA HALAMAN UTAMA
 if not st.session_state.selesai:
@@ -214,6 +216,7 @@ if not st.session_state.selesai:
 
 # 5. LOGIKA HALAMAN KEJUTAN (SETELAH KLIK IYA)
 else:
+    # EFEK PARTY MODE BERUNTUN (Balon + Salju + Peringatan Heboh)
     st.balloons()
     st.snow()
     
@@ -232,6 +235,14 @@ else:
     </p>
     """, unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Tombol Ekstra: Buka Kado Misterius di dalam kartu
+    if not st.session_state.buka_kado:
+        if st.button("Buka Kado Misterius 🎁", use_container_width=True):
+            st.session_state.buka_kado = True
+            st.rerun()
+    else:
+        st.success("🎉 SELAMAT! CONGRATULATION!")
     
     if st.button("Ulangi Kemegahan 🔄", use_container_width=True):
         st.session_state.hitung = 0
