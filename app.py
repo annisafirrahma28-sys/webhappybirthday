@@ -174,14 +174,6 @@ if not st.session_state.selesai:
     if st.session_state.posisi_acak:
         kolom_kiri, kolom_kanan = st.columns([lebar_nggak, lebar_iya])
         btn_kiri = kolom_kiri.button("Nggak", use_container_width=True)
-        
-        teks_iya = "Iya, Aku Ulang Tahun! 🎉"
-        if st.session_state.hitung >= 2:
-            teks_iya = "Iya, Ngaku deh! 😭"
-        if st.session_state.hitung >= 4:
-            teks_iya = "IYA KOK, UDAH PENCET AJA! 🫵"
-        if st.session_state.hitung >= 6:
-            teks_iya = "PENCET INI ATAU GUE NGAMBEK! 🔥"
             
         btn_kanan = kolom_kanan.button(teks_iya, use_container_width=True)
         
