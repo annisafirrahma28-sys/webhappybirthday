@@ -8,6 +8,16 @@ st.set_page_config(
     layout="centered"
 )
 
+# Ambil jumlah klik "Nggak" saat ini
+hitung_klik = st.session_state.get('hitung', 0)
+
+# Tombol "Iya" bakal terus membesar TANPA BATAS selama dia terus ngeklik "Nggak"
+font_size_iya = 10 + (hitung_klik * 6)
+padding_iya = 10 + (hitung_klik * 8)
+
+# Hitung level emosi/kemarahan web dari 0% sampai 100% (nambah 10% tiap klik)
+level_emosi = min(hitung_klik * 10, 100)
+
 # 2. INITIALIZE STATE (Memori Klik & Variabel WAJIB biar gak KeyError)
 if 'hitung' not in st.session_state:
     st.session_state.hitung = 0
@@ -31,27 +41,19 @@ st.markdown(f"""
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
-    /* Background gradasi mewah dreamy pastel */
+    /* Background gradasi mewah */
     .stApp {{
-        background: linear-gradient(135deg, #fbcfe8 0%, #e0e7ff 50%, #fde68a 100%);
+        background: linear-gradient(35deg, #fbcfe8 0%, #e0e7ff 50%, #fde68a 100%);
     }}
     
-    /* Animasi Kelap-Kelip Lampu Disko untuk Border Kartu */
-    @keyframes partyBorder {{
-        0% {{ border-color: #ff3366; box-shadow: 0 0 15px rgba(255,51,102,0.5); }}
-        33% {{ border-color: #3b82f6; box-shadow: 0 0 15px rgba(59,130,246,0.5); }}
-        66% {{ border-color: #f59e0b; box-shadow: 0 0 15px rgba(245,158,11,0.5); }}
-        100% {{ border-color: #ff3366; box-shadow: 0 0 15px rgba(255,51,102,0.5); }}
-    }}
-
-    /* Wadah utama bergaya kaca transparan dengan efek lampu pesta */
+    /* Wadah utama bergaya kaca transparan mewah (Glassmorphism) */
     .glass-card {{
-        background: rgba(255, 255, 255, 0.65);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        background: rgba(255, 255, 255, 0.45);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        backdrop-filter: blur(8.5px);
+        -webkit-backdrop-filter: blur(8.5px);
         border-radius: 25px;
-        border: 3px solid #ff3366;
-        animation: partyBorder 4s infinite;
+        border: 1px solid rgba(255, 255, 255, 0.18);
         padding: 30px;
         text-align: center;
         margin-bottom: 25px;
@@ -60,26 +62,26 @@ st.markdown(f"""
     /* Judul Megah Animasi */
     .mega-title {{ 
         font-family: 'Poppins', sans-serif;
-        font-size: 34px !important; 
+        font-size: 32px !important; 
         font-weight: 900; 
         color: #ff3366; 
         text-align: center;
         text-shadow: 3px 3px 6px rgba(0,0,0,0.15);
         margin-top: 10px;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
     }}
 
-    /* Badge Pesta Rame */
-    .party-badge {{
+    /* Subtitle Badge Rame */
+    .badge-info {{
         display: inline-block;
-        background: linear-gradient(45deg, #ff3366, #ff6b81);
+        background: #ff3366;
         color: white;
-        padding: 6px 18px;
-        border-radius: 25px;
+        padding: 5px 15px;
+        border-radius: 20px;
         font-weight: bold;
-        font-size: 15px;
+        font-size: 14px;
         margin-bottom: 15px;
-        box-shadow: 0 4px 15px rgba(255,51,102,0.4);
+        box-shadow: 0 4px 10px rgba(255,51,102,0.3);
     }}
     
     /* Teks Narasi */
@@ -87,13 +89,41 @@ st.markdown(f"""
         font-family: 'Inter', sans-serif;
         font-size: 20px !important; 
         color: #333333;
-        font-weight: 600;
+        font-weight: 500;
         text-align: center; 
         line-height: 1.8;
     }}
+
+    /* KOTAK METERAN EMOSI KUSTOM */
+    .emotion-box {{
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 15px;
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 2px solid #ff3366;
+        box-shadow: 0 4px 15px rgba(255, 51, 102, 0.2);
+    }}
     
-    /* TOMBOL IYA (TERUS MEMBESAR TANPA BATAS) */
-    div[data-testid="stColumn"]:nth-of-type(1) .stButton>button {{
+    .emotion-bar-container {{
+        width: 100%;
+        background-color: #e0e0e0;
+        border-radius: 20px;
+        height: 22px;
+        overflow: hidden;
+        margin-top: 8px;
+        box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+    }}
+    
+    .emotion-bar-fill {{
+        width: {level_emosi}%;
+        height: 100%;
+        background: linear-gradient(90deg, #ff9a9e 0%, #ff3366 100%);
+        border-radius: 20px;
+        transition: width 0.4s ease-in-out;
+    }}
+    
+    /* HANYA TOMBOL IYA DI HALAMAN UTAMA YANG MEMBESAR */
+    div[data-testid="stColumn"]:nth-of-type(1) > div > div > div > .stButton>button {{
         background-color: #ff3366 !important;
         color: white !important;
         border: none !important;
@@ -106,12 +136,8 @@ st.markdown(f"""
         box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4) !important;
     }}
     
-    div[data-testid="stColumn"]:nth-of-type(1) .stButton>button:hover {{
-        transform: scale(1.03) !important;
-    }}
-    
-    /* TOMBOL NGGAK (MENYUSUT TERUS) */
-    div[data-testid="stColumn"]:nth-of-type(2) .stButton>button {{
+    /* TOMBOL NGGAK DI HALAMAN UTAMA */
+    div[data-testid="stColumn"]:nth-of-type(2) > div > div > div > .stButton>button {{
         background-color: #ffffff !important;
         color: #777777 !important;
         border: 1px solid #cccccc !important;
@@ -119,6 +145,7 @@ st.markdown(f"""
         font-weight: bold !important;
         font-size: 16px !important;
         padding: 8px 12px !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
     }}
     </style>
     """, unsafe_allow_html=True)
@@ -151,13 +178,17 @@ if not st.session_state.selesai:
         kolom_kiri, kolom_kanan = st.columns([lebar_nggak, lebar_iya])
         btn_kiri = kolom_kiri.button("Nggak", use_container_width=True)
         
-        teks_iya = "Iya, Aku Ulang Tahun! 🎉"
+        teks_iya = "Iya"
         if st.session_state.hitung >= 2:
-            teks_iya = "Iya, Ngaku deh! 😭"
+            teks_iya = "Iya, Ngaku deh!"
+        if st.session_state.hitung >= 3:
+            teks_iya = "IYA KOK, UDAH PENCET AJA!"
         if st.session_state.hitung >= 4:
-            teks_iya = "IYA KOK, UDAH PENCET AJA! 🫵"
+            teks_iya = "PENCET INI ATAU GUE NGAMBEK!"
+        if st.session_state.hitung >= 5:
+            teks_iya = "GW BENCI LU BGT!"
         if st.session_state.hitung >= 6:
-            teks_iya = "PENCET INI ATAU GUE NGAMBEK! 🔥"
+            teks_iya = "BENCI!"
             
         btn_kanan = kolom_kanan.button(teks_iya, use_container_width=True)
         
@@ -173,14 +204,20 @@ if not st.session_state.selesai:
         col1, col2 = st.columns([lebar_iya, lebar_nggak])
         
         with col1:
-            teks_iya = "Iya, Aku Ulang Tahun! 🎉"
+            teks_iya = "Iya!"
             if st.session_state.hitung >= 2:
-                teks_iya = "Iya, Ngaku deh! 😭"
+                teks_iya = "IYA!"
+            if st.session_state.hitung >= 3:
+                teks_iya = "IYAA!"
             if st.session_state.hitung >= 4:
-                teks_iya = "IYA KOK, UDAH PENCET AJA! 🫵"
+                teks_iya = "IYAAA!"
+            if st.session_state.hitung >= 5:
+                teks_iya = "IYAAAA!"
             if st.session_state.hitung >= 6:
-                teks_iya = "PENCET INI ATAU GUE NGAMBEK! 🔥"
-                
+                teks_iya = "IYAAAA!"
+            if st.session_state.hitung >= 7:
+                teks_iya = "IYAAAAA!"
+            
             if st.button(teks_iya, use_container_width=True):
                 st.session_state.selesai = True
                 st.rerun()
@@ -190,6 +227,18 @@ if not st.session_state.selesai:
                 st.session_state.hitung += 1
                 st.session_state.posisi_acak = random.choice([True, False])
                 st.rerun() 
+
+     st.markdown(f"""
+    <div class="emotion-box">
+        <div style="font-weight: bold; color: #ff3366; font-family: 'Poppins', sans-serif;">
+            🔥 Level Kekesalan: {level_emosi}%
+        </div>
+        <div class="emotion-bar-container">
+            <div class="emotion-bar-fill"></div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
 
     # REAKSI MENGELAK BERPUTAR (LOOPING)
     if st.session_state.hitung > 0:
@@ -221,6 +270,7 @@ else:
     st.markdown('<div class="animate__animated animate__jackInTheBox mega-title">✨ HAPPY BIRTHDAY, PENDEK! ✨</div>', unsafe_allow_html=True)
     
     st.markdown('<div class="glass-card animate__animated animate__fadeInUp">', unsafe_allow_html=True)
+    
     st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExajJoNHo0OHY2bTR3azFrcWp5N3lhbjRkMGhucTNkYndmNW96eG5yayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/IaGqkVQit54xT6BUDj/giphy.gif", width=300)
     st.markdown("""
     <p class="mega-text">
@@ -247,11 +297,11 @@ else:
             st.session_state.kado_pilih = "emas"
             
     if st.session_state.kado_pilih == "merah":
-        st.error("🎁 **Isi Kado Merah:** Tiket gratis ditraktir seblak level neraka (syarat & ketentuan: dibayarin pakai doa doang wkwk).")
+        st.error("🎁 **Isi Kado Merah:** Lu nraktir gw")
     elif st.session_state.kado_pilih == "biru":
-        st.info("🎀 **Isi Kado Biru:** Halusinasi 1 jam penuh ditemenin Furuya Rei versi karton 2D. Lumayan kan wkwk!")
+        st.info("🎀 **Isi Kado Biru:** Gw ditraktir lu ")
     elif st.session_state.kado_pilih == "emas":
-        st.success("👑 **Isi Kado Emas:** Ucapan tulus dari lubuk hati terdalam: Semoga semua impian 17 tahunmu terwujud, sehat & sukses selalu bestie tercinta! ✨")
+        st.success("👑 **Isi Kado Emas:** Prabowo lengser")
 
     st.markdown('</div>', unsafe_allow_html=True)
     
