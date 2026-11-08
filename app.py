@@ -174,8 +174,6 @@ if not st.session_state.selesai:
     if st.session_state.posisi_acak:
         kolom_kiri, kolom_kanan = st.columns([lebar_nggak, lebar_iya])
         btn_kiri = kolom_kiri.button("Nggak", use_container_width=True)
-            
-        btn_kanan = kolom_kanan.button(teks_iya, use_container_width=True)
         
         if btn_kiri:
             st.session_state.hitung += 1
