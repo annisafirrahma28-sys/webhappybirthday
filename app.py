@@ -228,7 +228,7 @@ if not st.session_state.selesai:
                 st.session_state.posisi_acak = random.choice([True, False])
                 st.rerun() 
 
-     st.markdown(f"""
+    st.markdown(f"""
     <div class="emotion-box">
         <div style="font-weight: bold; color: #ff3366; font-family: 'Poppins', sans-serif;">
             🔥 Level Kekesalan: {level_emosi}%
