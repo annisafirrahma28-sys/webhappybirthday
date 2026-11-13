@@ -1,4 +1,5 @@
 import streamlit as st
+import random
 
 # 1. SETTING HALAMAN PREMIUM
 st.set_page_config(
