@@ -202,15 +202,15 @@ if not st.session_state.selesai:
         
     st.markdown('</div>', unsafe_allow_html=True)
     
-        if st.session_state.hitung >= 2:
+if st.session_state.hitung >= 2:
             teks_iya = "Iya, Ngaku deh!"
-        if st.session_state.hitung >= 3:
+if st.session_state.hitung >= 3:
             teks_iya = "IYA KOK, UDAH PENCET AJA!"
-        if st.session_state.hitung >= 4:
+if st.session_state.hitung >= 4:
             teks_iya = "PENCET INI ATAU GUE NGAMBEK!"
-        if st.session_state.hitung >= 5:
+if st.session_state.hitung >= 5:
             teks_iya = "GW BENCI LU BGT!"
-        if st.session_state.hitung >= 6:
+if st.session_state.hitung >= 6:
             teks_iya = "BENCI!"
             
         btn_kanan = kolom_kanan.button(teks_iya, use_container_width=True)
