@@ -166,8 +166,6 @@ if 'selesai' not in st.session_state:
     st.session_state.selesai = False
 if 'kado_pilih' not in st.session_state:
     st.session_state.kado_pilih = None
-if 'posisi_acak' not in st.session_state:
-    st.session_state.posisi_acak = False
 
 # Ambil jumlah klik "Nggak" saat ini
 hitung_klik = st.session_state.hitung
@@ -201,21 +199,9 @@ if not st.session_state.selesai:
         st.markdown(f"<p style='color: #ff3366; font-weight: bold; margin-top: 10px;'>⚠️ Status: Sudah ngeyel menolak sebanyak {hitung_klik} kali! LU EMG JELEK!!!</p>", unsafe_allow_html=True)
         
     st.markdown('</div>', unsafe_allow_html=True)
-    
-    if st.session_state.hitung >= 2:
-            teks_iya = "Iya, Ngaku deh!"
-    if st.session_state.hitung >= 3:
-            teks_iya = "IYA KOK, UDAH PENCET AJA!"
-    if st.session_state.hitung >= 4:
-            teks_iya = "PENCET INI ATAU GUE NGAMBEK!"
-    if st.session_state.hitung >= 5:
-            teks_iya = "GW BENCI LU BGT!"
-    if st.session_state.hitung >= 6:
-            teks_iya = "BENCI!"
-    else:
-        col1, col2 = st.columns([lebar_iya, lebar_nggak])
         
         with col1:
+            # Teks tombol "Iya" makin lama makin memaksa
             teks_iya = "Iya!"
             if st.session_state.hitung >= 2:
                 teks_iya = "IYA!"
@@ -283,6 +269,8 @@ if not st.session_state.selesai:
             st.info(f"Klik ke-{h}: Capek kan ngejar tombol 'Nggak'? Pencet 'Iya' aja!!")
         elif pesan_loop == 5:
             st.info(f"Klik ke-{h}: PENCET TOMBOL SEBELAH GAK!?")
+        elif pesan_loop == 6:
+            st.info(f"Klik ke-{h}: WOY ANJIRRRRR")
         else:
             st.warning(f"Klik ke-{h}: Ngeyel mulu!")
             
