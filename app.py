@@ -256,7 +256,7 @@ if not st.session_state.selesai:
         with col2:
             if st.button("Nggak", use_container_width=True):
                 st.session_state.hitung += 1
-                st.session_state.posisi_acak = import random.choice([True, False])
+                st.session_state.posisi_acak = random.choice([True, False])
                 st.rerun() 
 
     st.markdown(f"""
