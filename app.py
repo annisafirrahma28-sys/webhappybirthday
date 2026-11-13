@@ -28,6 +28,12 @@ st.markdown(f"""
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
+    [data-testid="stHorizontalBlock"] {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+    }
+    
     /* Background gradasi mewah dreamy pastel */
     .stApp {{
         background: linear-gradient(135deg, #fbcfe8 0%, #e0e7ff 50%, #fde68a 100%);
