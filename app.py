@@ -208,17 +208,17 @@ if not st.session_state.selesai:
     
     with col1:
         if st.session_state.hitung >= 2:
-        teks_iya = "IYA!"
+            teks_iya = "IYA!"
         if st.session_state.hitung >= 3:
-        teks_iya = "IYAA!"
+            teks_iya = "IYAA!"
         if st.session_state.hitung >= 4:
-        teks_iya = "IYAAA!"
+            teks_iya = "IYAAA!"
         if st.session_state.hitung >= 5:
-        teks_iya = "IYAAAA!"
+            teks_iya = "IYAAAA!"
         if st.session_state.hitung >= 6:
-        teks_iya = "IYAAAA!"
+            teks_iya = "IYAAAA!"
         if st.session_state.hitung >= 7:
-        teks_iya = "IYAAAAA!"
+            teks_iya = "IYAAAAA!"
             
         if st.button(teks_iya, use_container_width=True):
             st.session_state.selesai = True
