@@ -199,7 +199,8 @@ if not st.session_state.selesai:
         st.markdown(f"<p style='color: #ff3366; font-weight: bold; margin-top: 10px;'>⚠️ Status: Sudah ngeyel menolak sebanyak {hitung_klik} kali! LU EMG JELEK!!!</p>", unsafe_allow_html=True)
         
     st.markdown('</div>', unsafe_allow_html=True)
-        
+
+    # --- EFEK TOMBOL KABUR / ACAK POSISI ---
     with col1:
             # Teks tombol "Iya" makin lama makin memaksa
             teks_iya = "Iya!"
