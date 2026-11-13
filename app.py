@@ -281,7 +281,7 @@ if not st.session_state.selesai:
         if pesan_loop == 1:
             st.warning(f"Klik ke-{h}: Masa sih salah? lu jgn meragukan gw!")
         elif pesan_loop == 2:
-            st.error(f"Klik ke-{h}: SYIT! JGN MERAGUKAN INGATAN GW! GW INGET KOK 7 DESEMBER!!!)
+            st.error(f"Klik ke-{h}: SYIT! JGN MERAGUKAN INGATAN GW! GW INGET KOK 7 DESEMBER!!!")
         elif pesan_loop == 3:
             st.error(f"Klik ke-{h}: WOY MONYET!")
         elif pesan_loop == 4:
