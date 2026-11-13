@@ -204,7 +204,7 @@ if not st.session_state.selesai:
     lebar_iya = 2 + min(hitung_klik * 0.4, 3.5)
     lebar_nggak = max(1.5 - (hitung_klik * 0.1), 0.6)
     
-    col1, col2 = st.columns([lebar_iya, lebar_nggak])
+    col1, col2 = st.columns(2)
     
     with col1:
         teks_iya = "Iya"
@@ -242,7 +242,6 @@ if not st.session_state.selesai:
 
     if st.button("Nggak", use_container_width=True):
           st.session_state.hitung += 1
-          st.session_state.posisi_acak = random.choice([True, False])
           st.rerun() 
 
     st.markdown(f"""
