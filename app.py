@@ -201,8 +201,7 @@ if not st.session_state.selesai:
         st.markdown(f"<p style='color: #ff3366; font-weight: bold; margin-top: 10px;'>⚠️ Status: Sudah ngeyel menolak sebanyak {hitung_klik} kali! LU EMG JELEK!!!</p>", unsafe_allow_html=True)
         
     st.markdown('</div>', unsafe_allow_html=True)
-        
-        teks_iya = "Iya"
+    
         if st.session_state.hitung >= 2:
             teks_iya = "Iya, Ngaku deh!"
         if st.session_state.hitung >= 3:
