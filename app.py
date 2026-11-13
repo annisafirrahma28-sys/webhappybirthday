@@ -207,7 +207,6 @@ if not st.session_state.selesai:
     col1, col2 = st.columns([lebar_iya, lebar_nggak])
     
     with col1:
-        teks_iya = "Iya!"
         if st.session_state.hitung >= 2:
         teks_iya = "IYA!"
         if st.session_state.hitung >= 3:
