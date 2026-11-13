@@ -220,7 +220,7 @@ if not st.session_state.selesai:
         if st.session_state.hitung >= 7:
             teks_iya = "IYAAAAA!"
             
-        if st.button(teks_iya, use_container_width=True):
+        if st.button(use_container_width=True):
             st.session_state.selesai = True
             st.rerun()
                 
