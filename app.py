@@ -12,12 +12,12 @@ st.set_page_config(
 hitung_klik = st.session_state.get('hitung', 0)
 
 # Tombol "Iya" bakal terus membesar TANPA BATAS selama dia terus ngeklik "Nggak"
-font_size_iya = 10 + (hitung_klik * 6)
-padding_iya = 10 + (hitung_klik * 8)
+font_size_iya = 16 + (hitung_klik * 6)
+padding_iya = 12 + (hitung_klik * 8)
 
 # Ukuran tombol "Nggak" MAKIN MENYUSUT KECIL
-font_size_nggak = max(18 - (hitung_klik * 2), 6)
-padding_nggak = max(10 - (hitung_klik * 1), 2)
+font_size_nggak = max(18 - (hitung_klik * 2), 10)
+padding_nggak = max(10 - (hitung_klik * 1), 4)
 
 # Hitung level emosi/kemarahan web dari 0% sampai 100% (nambah 10% tiap klik)
 level_emosi = min(hitung_klik * 10, 100)
@@ -201,25 +201,29 @@ if not st.session_state.selesai:
     st.markdown('</div>', unsafe_allow_html=True)
 
     # --- EFEK TOMBOL KABUR / ACAK POSISI ---
+    lebar_iya = 1 + (st.session_state.hitung * 0.5)
+    lebar_nggak = max(1 - (st.session_state.hitung * 0.12), 0.2)
+    
+    col1, col2 = st.columns([lebar_iya, lebar_nggak])
+    
     with col1:
-            # Teks tombol "Iya" makin lama makin memaksa
-            teks_iya = "Iya!"
-            if st.session_state.hitung >= 2:
-                teks_iya = "IYA!"
-            if st.session_state.hitung >= 3:
-                teks_iya = "IYAA!"
-            if st.session_state.hitung >= 4:
-                teks_iya = "IYAAA!"
-            if st.session_state.hitung >= 5:
-                teks_iya = "IYAAAA!"
-            if st.session_state.hitung >= 6:
-                teks_iya = "IYAAAA!"
-            if st.session_state.hitung >= 7:
-                teks_iya = "IYAAAAA!"
+        teks_iya = "Iya!"
+        if st.session_state.hitung >= 2:
+        teks_iya = "IYA!"
+        if st.session_state.hitung >= 3:
+        teks_iya = "IYAA!"
+        if st.session_state.hitung >= 4:
+        teks_iya = "IYAAA!"
+        if st.session_state.hitung >= 5:
+        teks_iya = "IYAAAA!"
+        if st.session_state.hitung >= 6:
+        teks_iya = "IYAAAA!"
+        if st.session_state.hitung >= 7:
+        teks_iya = "IYAAAAA!"
             
-            if st.button(teks_iya, use_container_width=True):
-                st.session_state.selesai = True
-                st.rerun()
+        if st.button(teks_iya, use_container_width=True):
+            st.session_state.selesai = True
+            st.rerun()
                 
     with col2:
              # Teks tombol "Nggak" makin lama makin ciut / susah dipencet
