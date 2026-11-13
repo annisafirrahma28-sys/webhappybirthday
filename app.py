@@ -185,20 +185,20 @@ if not st.session_state.selesai:
     """, unsafe_allow_html=True)
 
     st.markdown('<div class="animate__animated animate__bounceIn mega-title">👑 SWEET SEVENTEEN PARTY 👑</div>', unsafe_allow_html=True)
-    st.markdown('<div style="text-align: center;"><span class="party-badge">✨ SPESIAL 7 DESEMBER • HURU-HARA DIMULAI ✨</span></div>', unsafe_allow_html=True)
+    st.markdown('<div style="text-align: center;"><span class="party-badge">✨ SPESIAL 7 DESEMBER • MUTIA RAHMANI AQSA ✨</span></div>', unsafe_allow_html=True)
     
     st.markdown('<div class="glass-card animate__animated animate__fadeInUp">', unsafe_allow_html=True)
     
     col_g1, col_g2 = st.columns(2)
     with col_g1:
-        st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnU1dTRneTI5ZHRkZXFlbGV5czZxY25sZ2p4MmNobnF4aGR0eDFmNyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/QsomqbDcRm9xMFxJMu/giphy.gif", use_container_width=True)
+        st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExemdvajM5NnBmcGN4N3AzaXBhMDc0cTk5a2FiYXdqYWNydGJvcmx4MiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/fx8HHVnj3Zpo1lbCkS/giphy.gif", use_container_width=True)
     with col_g2:
-        st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExajJoNHo0OHY2bTR3azFrcWp5N3lhbjRkMGhucTNkYndmNW96eG5yayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3oz8xAFtphMRurshu0/giphy.gif", use_container_width=True)
+        st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExemdvajM5NnBmcGN4N3AzaXBhMDc0cTk5a2FiYXdqYWNydGJvcmx4MiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/uyfgCPQeCjYMVxt2m3/giphy.gif", use_container_width=True)
         
     st.markdown('<p class="mega-text">Woy denger-denger hari ini ada jatah umur yang berkurang nih wkwk...<br><b>Jujur, kamu kan yang ulang tahun hari ini, si Pendek? 👀🎂</b></p>', unsafe_allow_html=True)
     
     if hitung_klik > 0:
-        st.markdown(f"<p style='color: #ff3366; font-weight: bold; margin-top: 10px;'>⚠️ Status: Sudah ngeyel menolak sebanyak {hitung_klik} kali! Tombolnya mulai kabur-kaburan tuh wkwk 🤭</p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='color: #ff3366; font-weight: bold; margin-top: 10px;'>⚠️ Status: Sudah ngeyel menolak sebanyak {hitung_klik} kali! LU EMG JELEK!!!</p>", unsafe_allow_html=True)
         
     st.markdown('</div>', unsafe_allow_html=True)
 
