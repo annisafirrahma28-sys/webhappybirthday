@@ -12,12 +12,12 @@ st.set_page_config(
 hitung_klik = st.session_state.get('hitung', 0)
 
 # Tombol "Iya" bakal terus membesar TANPA BATAS selama dia terus ngeklik "Nggak"
-font_size_iya = 16 + (hitung_klik * 6)
-padding_iya = 12 + (hitung_klik * 8)
+font_size_iya = 10 + (hitung_klik * 6)
+padding_iya = 10 + (hitung_klik * 8)
 
 # Ukuran tombol "Nggak" MAKIN MENYUSUT KECIL
-font_size_nggak = max(18 - (hitung_klik * 2), 10)
-padding_nggak = max(10 - (hitung_klik * 1), 4)
+font_size_nggak = max(18 - (hitung_klik * 2), 6)
+padding_nggak = max(10 - (hitung_klik * 1), 2)
 
 # Hitung level emosi/kemarahan web dari 0% sampai 100% (nambah 10% tiap klik)
 level_emosi = min(hitung_klik * 10, 100)
@@ -166,13 +166,6 @@ if 'selesai' not in st.session_state:
     st.session_state.selesai = False
 if 'kado_pilih' not in st.session_state:
     st.session_state.kado_pilih = None
-
-# Ambil jumlah klik "Nggak" saat ini
-hitung_klik = st.session_state.hitung
-
-# Ukuran font tombol "Iya" TERUS MEMBESAR tanpa batas
-font_size_iya = 18 + (hitung_klik * 6)
-padding_iya = 10 + (hitung_klik * 8)
 
 # 4. LOGIKA HALAMAN UTAMA
 if not st.session_state.selesai:
