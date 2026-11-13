@@ -176,7 +176,14 @@ font_size_iya = 18 + (hitung_klik * 6)
 padding_iya = 10 + (hitung_klik * 8)
 
 # 4. LOGIKA HALAMAN UTAMA
-st.markdown('<div class="animate__animated animate__bounceIn mega-title">👑 SWEET SEVENTEEN PARTY 👑</div>', unsafe_allow_html=True)
+if not st.session_state.selesai:
+    st.markdown("""
+        <marquee behavior="scroll" direction="left" style="background: #ff3366; color: white; font-weight: bold; padding: 6px; border-radius: 10px; margin-bottom: 15px;">
+            🚨 PERHATIAN: ADA YANG ULANG TAHUN HARI INI! DILARANG KERAS MENGELAK ATAU MEMENCET TOMBOL NGGAK! 🚨 WAKTUNYA HURU-HARA SWEET SEVENTEEN 👑✨
+        </marquee>
+    """, unsafe_allow_html=True)
+
+    st.markdown('<div class="animate__animated animate__bounceIn mega-title">👑 SWEET SEVENTEEN PARTY 👑</div>', unsafe_allow_html=True)
     st.markdown('<div style="text-align: center;"><span class="party-badge">✨ SPESIAL 7 DESEMBER • HURU-HARA DIMULAI ✨</span></div>', unsafe_allow_html=True)
     
     st.markdown('<div class="glass-card animate__animated animate__fadeInUp">', unsafe_allow_html=True)
