@@ -207,6 +207,7 @@ if not st.session_state.selesai:
     col1, col2 = st.columns([lebar_iya, lebar_nggak])
     
     with col1:
+        teks_iya = "Iya"
         if st.session_state.hitung >= 2:
             teks_iya = "IYA!"
         if st.session_state.hitung >= 3:
@@ -220,7 +221,7 @@ if not st.session_state.selesai:
         if st.session_state.hitung >= 7:
             teks_iya = "IYAAAAA!"
             
-        if st.button(use_container_width=True):
+        if st.button(teks_iya, use_container_width=True):
             st.session_state.selesai = True
             st.rerun()
                 
