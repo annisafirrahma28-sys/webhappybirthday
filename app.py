@@ -29,7 +29,7 @@ st.markdown(f"""
     
     <style>
     [data-testid="stHorizontalBlock"] {
-        display: flex !important;
+    display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
     }
