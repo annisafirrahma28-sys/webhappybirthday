@@ -201,14 +201,6 @@ if not st.session_state.selesai:
         st.markdown(f"<p style='color: #ff3366; font-weight: bold; margin-top: 10px;'>⚠️ Status: Sudah ngeyel menolak sebanyak {hitung_klik} kali! LU EMG JELEK!!!</p>", unsafe_allow_html=True)
         
     st.markdown('</div>', unsafe_allow_html=True)
-
-    # --- EFEK TOMBOL KABUR / ACAK POSISI ---
-    lebar_iya = 1 + (st.session_state.hitung * 0.6)
-    lebar_nggak = max(1 - (st.session_state.hitung * 0.15), 0.15)
-    
-    if st.session_state.posisi_acak:
-        kolom_kiri, kolom_kanan = st.columns([lebar_nggak, lebar_iya])
-        btn_kiri = kolom_kiri.button("Nggak", use_container_width=True)
         
         teks_iya = "Iya"
         if st.session_state.hitung >= 2:
@@ -256,7 +248,6 @@ if not st.session_state.selesai:
                 
         with col2:
              # Teks tombol "Nggak" makin lama makin ciut / susah dipencet
-        teks_nggak = "Nggak"
         if st.session_state.hitung >= 2:
             teks_nggak = "ogah"
         if st.session_state.hitung >= 3:
