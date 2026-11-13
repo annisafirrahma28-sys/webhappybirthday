@@ -201,8 +201,8 @@ if not st.session_state.selesai:
     st.markdown('</div>', unsafe_allow_html=True)
 
     # --- EFEK TOMBOL KABUR / ACAK POSISI ---
-    lebar_iya = 1 + (st.session_state.hitung * 0.5)
-    lebar_nggak = max(1 - (st.session_state.hitung * 0.12), 0.2)
+    lebar_iya = 2 + min(hitung_klik * 0.4, 3.5)
+    lebar_nggak = max(1.5 - (hitung_klik * 0.1), 0.6)
     
     col1, col2 = st.columns([lebar_iya, lebar_nggak])
     
