@@ -255,10 +255,25 @@ if not st.session_state.selesai:
                 st.rerun()
                 
         with col2:
-            if st.button("Nggak", use_container_width=True):
-                st.session_state.hitung += 1
-                st.session_state.posisi_acak = random.choice([True, False])
-                st.rerun() 
+             # Teks tombol "Nggak" makin lama makin ciut / susah dipencet
+        teks_nggak = "Nggak"
+        if st.session_state.hitung >= 2:
+            teks_nggak = "ogah"
+        if st.session_state.hitung >= 3:
+            teks_nggak = "ga"
+        if st.session_state.hitung >= 4:
+            teks_nggak = "ogah"
+        if st.session_state.hitung >= 5:
+            teks_nggak = "ga"
+        if st.session_state.hitung >= 6:
+            teks_nggak = "nggak"
+        if st.session_state.hitung >= 7:
+            teks_nggak = "ogah"
+
+    if st.button("Nggak", use_container_width=True):
+          st.session_state.hitung += 1
+          st.session_state.posisi_acak = random.choice([True, False])
+          st.rerun() 
 
     st.markdown(f"""
     <div class="emotion-box">
