@@ -200,7 +200,7 @@ if not st.session_state.selesai:
         
     st.markdown('</div>', unsafe_allow_html=True)
         
-        with col1:
+    with col1:
             # Teks tombol "Iya" makin lama makin memaksa
             teks_iya = "Iya!"
             if st.session_state.hitung >= 2:
@@ -220,7 +220,7 @@ if not st.session_state.selesai:
                 st.session_state.selesai = True
                 st.rerun()
                 
-        with col2:
+    with col2:
              # Teks tombol "Nggak" makin lama makin ciut / susah dipencet
         if st.session_state.hitung >= 2:
             teks_nggak = "ogah"
